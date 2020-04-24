@@ -1,0 +1,54 @@
+\documentclass{article}
+\usepackage{latexsym}
+\usepackage{amssymb}
+
+\begin{document}
+\title{Measure Theory notes}
+\author{Dave Neary}
+
+\maketitle
+
+\section{Motivation for Lebesgue integral}
+
+The Riemann integral of a function $f:\mathbb{R} \rightarrow \mathbb{R}$ is defined as:
+
+\[ \int_{a}^{b}f(x) dx = \lim_{n \rightarrow \infty}\sum_{i=1}^{n}f(x_{i}) \delta x \]
+ 
+where $x_{i} = a + (i-1)\delta x$ and $\delta x=\frac{b-a}{n}$
+
+In other words, we partition the domain of the function into small slices, 
+and calculate the area under the curve by multiplying the width of the slices 
+by the value of the function at the beginning of the slice.
+
+This works well for a certain class of functions, called Riemann-integrable
+functions. These functions must satisfy the condition that the domain is $\mathbb{R}$,
+and that limit above exists.
+
+It is possible to generalize the Riemann integral to two
+or more dimensions, but the problem of finding an appropriate partition of the domain
+means that for dimensions of the real numbers which are higher than $\mathbb{R}^2$,
+the Riemann integral is limited.  In addition, we would like to consider other classes
+of domains than the reals for functions - for example, probability spaces or generic
+Hilbert spaces - where some alternative idea of the area under the curve (or more 
+generally, the volume of a set) may make sense. Another limitation of the Riemann
+integral is that there are useful classes of functions for which it does not converge,
+but for which a reasonable value for the integral exists.
+ 
+Another limitation of the Riemann integral is that there is only a very limited set of
+functions for which  it is possible to say 
+\[\int \sum_n f_n(x) dx = \sum_n \int f_n(x) dx \]
+
+Namely, $f_n(x)$ must converge uniformly to $f(x)$, which is a very strong constraint.
+
+As a result of these limitations, the idea of the Lebesgue integral is to partition
+the function range instead of the domain. We then identify the subsets of the domain for
+specific values of $f(x)$, and calculate their volume using a generic measure function
+$\mu$. By taking finer and finer intervals of the range, we can get better and better 
+estimates of the volume under the function with respect to the domain and the measure.
+
+The remainder of this document will describe the characteristics of a domain, the
+constraints required for a measure, which types of functions we can integrate, and
+a precise definition of the Lebesgue integral. We will also include a selection of
+proofs and problems which we can use the Lebesgue integral to solve.
+
+\end{document}
