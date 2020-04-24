@@ -1,5 +1,6 @@
 \documentclass{article}
 \usepackage{latexsym}
+\usepackage{amsmath}
 \usepackage{amssymb}
 
 \begin{document}
@@ -10,11 +11,13 @@
 
 \section{Motivation for Lebesgue integral}
 
-The Riemann integral of a function $f:\mathbb{R} \rightarrow \mathbb{R}$ is defined as:
+\subsection{Overview of the Riemann integral}
 
-\[ \int_{a}^{b}f(x) dx = \lim_{n \rightarrow \infty}\sum_{i=1}^{n}f(x_{i}) \delta x \]
+The Riemann integral of a continuous function $f:\mathbb{R} \rightarrow \mathbb{R}$ is defined as:
+
+\[ \int_{a}^{b}f(x) dx = \lim_{n \rightarrow \infty}\sum_{i=1}^{n}f(x_{i}) \Delta x \]
  
-where $x_{i} = a + (i-1)\delta x$ and $\delta x=\frac{b-a}{n}$
+where $x_{i} = a + (i-1)\Delta x$ and $\Delta x=\frac{b-a}{n}$
 
 In other words, we partition the domain of the function into small slices, 
 and calculate the area under the curve by multiplying the width of the slices 
@@ -23,6 +26,12 @@ by the value of the function at the beginning of the slice.
 This works well for a certain class of functions, called Riemann-integrable
 functions. These functions must satisfy the condition that the domain is $\mathbb{R}$,
 and that limit above exists.
+
+More generally, we can calculate an upper Riemann sum $U(f)$ by summing the 
+areas using $\sup{f(x)}$ on each partition, and a lower sum $L(f)$ by using $\inf{f(x)}$
+for each interval. The function $f$ is Riemann integrable when $\lim L(f) = \lim U(x)$. 
+
+\subsection{Limitations of the Riemann integral}
 
 It is possible to generalize the Riemann integral to two
 or more dimensions, but the problem of finding an appropriate partition of the domain
@@ -50,5 +59,25 @@ The remainder of this document will describe the characteristics of a domain, th
 constraints required for a measure, which types of functions we can integrate, and
 a precise definition of the Lebesgue integral. We will also include a selection of
 proofs and problems which we can use the Lebesgue integral to solve.
+
+\section{Measure spaces}
+
+Working backwards, to define what we mean by an integrable function, we will need to
+first define how to measure the volume of a subset of a domain (a measure), and to
+define a measure, we must first define the types of sets which will be measurable.
+
+Starting from a set $X$, a collection of subsets of $X$, $\mathcal{A}$, is called a
+$\sigma$-algebra if it satisfies the following conditions:
+
+\begin{itemize}
+		\item $X \in \mathcal{A}$
+		\item For each $A \in \mathcal{A}$, $X \setminus A \in \mathcal{A}$
+		\item For a countable sequence of subsets $(A_n)_{n \in \mathbb{N}} \in \mathcal{A}$,
+			\[\bigcup_{n} A_n \in \mathcal{A} \]
+\end{itemize}
+
+We will see when we define a measure why this is called a $\sigma$-algebra.
+
+The pair $(X, \mathcal{A})$ is called a measure space.
 
 \end{document}
