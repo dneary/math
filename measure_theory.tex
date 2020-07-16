@@ -184,6 +184,50 @@ Dirac measure $\delta_a(S) = 1$ if $a \in S$ or 0 otherwise.
 
 \textbf{Exercise:} Prove that the trivial, counting, and Dirac functions are measures.
 
+\begin{itemize}
+	\item \textbf{Trivial measure:} if $\mu(A)=0$ for all $A$, then 
+		$\mu(\emptyset)=0$, and for a pairwise disjoint collection of
+		sets $(A_i)_{i \in \mathbb{N}} \in \mathcal{A}$, 
+		\[ \mu(\left( \bigcup_{i =1}^{\infty} A_i \right) = 0 \]
+		and since $\mu \left( A_i \right) = 0$ for all $i$,
+		\[ \sum_{i=1}^{\infty} \mu \left( A_i \right) = 0 = 
+		\mu(\left( \bigcup_{i=1}^{\infty} A_i \right) \]
+		Therefore, $\mu$ is a measure.
+	\item \textbf{Counting measure:} $\mu(\emptyset) = |\emptyset|=0$
+		For a collection of pairwise disjoint sets 
+		$(A_i)_{i \in \mathbb{N}} \in \mathcal{A}$, if 
+		\[ \mu(\left( \bigcup_{i =1}^{\infty} A_i \right) < \infty \]
+		then each of $\mu(A_i)$ is finite, and there is a finite
+		collection of subsets $(A_i)$ of $X$. Each element of 
+		$\bigcup_{i =1}^{\infty} A_i$ is also an element of exactly one $A_i$
+		and each element of each $A_i$ is also an element of 
+		$\bigcup_{i =1}^{\infty} A_i$ by definition.
+		If \[ \mu(\left( \bigcup_{i =1}^{\infty} A_i \right) = \infty \], then 
+		for each $a \in \bigcup_{i =1}^{\infty} A_i$, $a \in A_i$ for some $i$.
+		Therefore, in either case,
+		\[ \sum_{i=1}^{\infty} \mu \left( A_i \right) = 
+		\sum_{i=1}^{\infty} |A_i| = 
+		\mu(\left( \bigcup_{i =1}^{\infty} A_i \right) \]
+		Therefore, the counting measure $\mu(A)=|A|$ is a measure.
+	\item \textbf{Dirac measure:} For an element $a \in X$, $\delta_a(A)=0$
+		if $a \notin A$
+		Since $a \notin \emptyset$, $\delta_a(\emptyset) = 0$.
+		Consider a pairwise disjoint collection of sets 
+		$(A_i)_{i \in \mathbb{N}} \in \mathcal{A}$. If 
+		$a \in \bigcup_{i =1}^{\infty} A_i $ then
+		\[\delta_a \left(\bigcup_{i=1}^{\infty} A_i \right) = 1 \]
+		and $a \in A_i$ for some $i \in \mathbb{N}$, and since 
+		$(A_i)$ are pairwise disjoint, $\delta_a(A_i)=1$ and
+		$\delta_a(A_j)=0$ for $j \ne i$. Then
+		\[ \sum_{i=1}^{\infty} \delta_a \left( A_i \right) = 1 = 
+                \delta_a(\left( \bigcup_{i=1}^{\infty} A_i \right) \]
+		If $a \notin \bigcup_{i =1}^{\infty} A_i $ then
+		$a \notin A_i$ for all $i$, and
+		\[ \sum_{i=1}^{\infty} \delta_a \left( A_i \right) = 0 =
+                \delta_a(\left( \bigcup_{i=1}^{\infty} A_i \right) \]
+		Therefore, $\delta_a$ is a measure.
+\end{itemize}
+
 \textbf{Exercise:} Prove the lemmas above.
 
 \subsection{Measurable functions}
@@ -262,6 +306,21 @@ Then
 In other words, we split $f(x)$ into two non-negative functions, one representing the positive
 part of $f$, and one representing the absolute value of the negative part of $f$, and we can
 calculate the final interval by removing the negative area from the positive area.
+
+For any continuous functions $f(x): X \rightarrow \overline{\mathbb{R}^{+}}$, we can construct
+a sequence of simple functions $\{f_n(x)\}$ which converges pointwise to $f(x)$ as follows.
+For $f_n(x)$, partition the range into $2^{2n}+1$ disjoint partitions $\{I_{n,i}\}$ with 
+\[ I_{n,i}  = \left\{ 
+\begin{array}{ll}
+	\left[\frac{i-1}{2^n},\frac{i}{2^n}\right) & 1 \le i \le 2^{2n} \\[2pt]
+	\left[\frac{i-1}{2^n},\infty\right) & i=2^{2n} + 1 
+\end{array} \right. \]
+
+Then define $\{A_{n,i}\}_{i \le 2^{2n} + 1} = f^{-1}(I_{n,i})$, the preimage of $I_{n,i}$.
+The collection $\{I_{n,k}\}$ cover $[0,\infty)$ for all $n$. The simple function 
+\[ f_n(x) = \sum_{i=1}^{2^{2n+1}}\frac{(i-1)}{2^n}\chi_{A_{n,i}}(x) \]
+is a sequence of increasing functions which converge pointwise to $f(x)$.
+
 
 \textbf{Exercise:}
 
