@@ -1,0 +1,18 @@
+For the first method, we want to rotate and translate the curve $y=\frac{1}{4f}x^2$, so that it lines up with the vertex at $(3,-2)$ (with f being the distance along the y-axis from the focus, which we already calculated as $2\sqrt{5}$
+The way we do that is first to parametrize x and y in terms of a 3rd variable t, so that $x(t)=t$ and $y(t)=\frac{1}{4f}t^2=\frac{t^2}{8\sqrt{5}}$
+Then we can calculate the rotation as follows:
+$\left( \begin{array} x’(t) \\ y’(t) \end{array}\right) = \left( \begin{array}\cos \theta & -\sin \theta \\ \sin \theta & \cos \theta \end{array} \right) \left( \begin{array}x(t) \\ y(t) \end{array} \right)$
+where $\theta$ is the angle of rotation we apply to the plane to map the axis of the parabola before rotation onto the axis after rotation (that is, with slope 2). Looking at the triangle $(5,2), (3,-2), (3,2)$, we can see that we will be rotating the plane by $\theta=-\tan^{-1}\frac{1}{2}$ where $\theta$ is the angle at $(3,-2)$ relative to the y-axis.
+$\cos \theta = \frac{2}{\sqrt{5}}$
+$\sin \theta = -\frac{1}{\sqrt{5}}$
+$\left( \begin{array}   x’(t) \\ y’(t) \end{array} \right) = \left( \begin{array} \frac{2}{\sqrt{5}} & \frac{1}{\sqrt{5}} \\ -\frac{1}{\sqrt{5}} & \frac{2}{\sqrt{5}} \end{array} \right) \left( \begin{array} t \\ \frac{t^2}{8\sqrt{5}} \end{array} \right) = \left( \begin{array} \frac{2t}{\sqrt{5}} + \frac{t^2)}{40} \\ \frac{-t}{\sqrt{5}} + \frac{t^2)}{20}\end{array} \right)$
+We can now find $y’(t)$ in terms of $x’(t)$  by solving the simultaneous equations above. Multiply the equation for $x'(t)$ by $\cos \theta = \frac{2}{\sqrt{5}}$ and the equation for $y'(t)$ by $\sin \theta = -\frac{1}{\sqrt{5}}$
+$\frac{2x'(t)}{\sqrt{5}} = \frac{4t}{5} + \frac{2t^2}{40\sqrt{5}}$
+$\frac{-y'(t)}{\sqrt{5}} = \frac{t}{5} - \frac{2t^2}{40\sqrt{5}}$
+$\frac{2x’(t)}{\sqrt{5}} - \frac{y’(t)}{\sqrt{5}} = t$
+And plugging this back into the equation for $y’(t)$:
+$y'(t)=\frac{-1}{sqrt{5}}\left(\frac{2x’(t)}{\sqrt{5}} - \frac{y’(t)}{\sqrt{5}}\right) + \frac{1}{20}\left(\frac{2x’(t)}{\sqrt{5}} - \frac{y’(t)}{\sqrt{5}}\right)^2$
+Simplifying:
+$\frac{\left(x'(t) - 2y'(t)\right)^2}{5} = 2x'(t)+4y'(t)$
+Now translating this curve so that the apex is at $(3,-2)$ instead of $(0,0)$ is as simple of replacing $x’(t)$ and $y’(t)$ with 
+
