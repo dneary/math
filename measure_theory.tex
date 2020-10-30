@@ -233,10 +233,10 @@ Dirac measure $\delta_a(S) = 1$ if $a \in S$ or 0 otherwise.
 \subsection{Measurable functions}
 
 Let $\left(\mathcal{X}, \mathcal{A}\right)$ and $\left(\mathcal{Y}, \mathcal{B}\right)$
-be measurable spaces. A function $f:\mathcal{X} \rightarrow \mathcal{Y}$ with respect to the 
-$\sigma$-algebras $\mathcal{A}, \mathcal{B}$ if, for each subset $B \in \mathcal{B}$, 
-$f^{-1}(B) \in \mathcal{A}$ (where $f^{-1}(B)$ is the pre-image of the set $B$ under the 
-function $f$, $\{x \in X \text: f(x) \in B\}$).
+be measurable spaces. A function $f:\mathcal{X} \rightarrow \mathcal{Y}$ is measurable with 
+respect to the $\sigma$-algebras $\mathcal{A}, \mathcal{B}$ if, for each subset
+$B \in \mathcal{B}$, $f^{-1}(B) \in \mathcal{A}$ (where $f^{-1}(B)$ is the pre-image of
+the set $B$ under the function $f$, $\{x \in X \text: f(x) \in B\}$).
 
 Thinking about useful collections of sets for a measure space, for functions mapping onto 
 $\overline{\mathbb{R}}$, we can generate a $\sigma$-algebra from the set of open intervals
@@ -253,7 +253,7 @@ theorems from topology too.
 the properties:
 
 \begin{enumerate}
-\item $X, \null \in A$
+\item $X, \emptyset \in A$
 \item If $O_1 \in A$ and $O_2 \in A$, then $O_1 \bigcap O_2 \in A$
 \item For a sequence of sets $\left(O_i\right)_{i\in \mathbb{N}} \in A$, the countable
 	union $\bigcup_{i\in \mathbb{N}} O_i \in A$
@@ -312,7 +312,7 @@ a sequence of simple functions $\{f_n(x)\}$ which converges pointwise to $f(x)$ 
 For $f_n(x)$, partition the range into $2^{2n}+1$ disjoint partitions $\{I_{n,i}\}$ with 
 \[ I_{n,i}  = \left\{ 
 \begin{array}{ll}
-	\left[\frac{i-1}{2^n},\frac{i}{2^n}\right) & 1 \le i \le 2^{2n} \\[2pt]
+	\left[\frac{i-1}{2^n},\frac{i}{2^n}\right) & 1 \le i \le 2^{2n} \\[3pt]
 	\left[\frac{i-1}{2^n},\infty\right) & i=2^{2n} + 1 
 \end{array} \right. \]
 
@@ -322,13 +322,22 @@ The collection $\{I_{n,k}\}$ cover $[0,\infty)$ for all $n$. The simple function
 is a sequence of increasing functions which converge pointwise to $f(x)$.
 
 
-\textbf{Exercise:}
-
-\textbf{Exercise:}
+\textbf{Exercise:} Prove that the sequence $f_n(x)$ above converges pointwise to $f(x)=x^2$ for all 
+$x \in \overline{\mathbb{R}^{+}}$.
 
 
 \section{Lebesgue Integrals and Probability Theory}
 
-
+Probability distributions all share some common characteristics which allow the application of measure
+theory to be useful. Given a sample space $\Omega$ of possible outcomes, and an event space 
+$\mathcal{A}$, which is a $\sigma$-algebra, and a probability measure $P$, a measure space
+$(\Omega, \mathcal{A}, P)$ is called a probability space if:
+\begin{enumerate}
+\item $P(\emptyset)=0$
+\item $P(\Omega)=1$
+\item if $\{A_{i}\}_{i=1}^{\infty } \subseteq {\mathcal{A}}$ is a countable collection of 
+	pairwise disjoint sets, then:
+		\[ P(\bigcup _{i=1}^{\infty }A_{i}) = \sum_{i=1}^{\infty} P(A_{i}) \]
+\end{enumerate}
 
 \end{document}
