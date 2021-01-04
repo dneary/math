@@ -14,7 +14,7 @@
 
 \section{Fermat's Two Primes Theorem}
 
-The theorem states that any odd prime $p$ can be written as the sum of two squares of
+The theorem states that an odd prime $p$ can be written as the sum of two squares of
 positive integers:
 \[ p = a^2 + b^2 , a, b \in \mathbb{N} \]
 if and only if it is of the form $4k+1, k\in \mathbb{N}$.
@@ -30,9 +30,12 @@ below.
 \subsection{Gaussian Integers}
 
 The Gaussian integers $\mathbb{Z}[i]$ are complex numbers of the form 
-$\{a+ib:a,b\in \mathbb{Z}, i=\sqrt{-1}\}$. The Gaussian integers are closed under
-the standard multiplication operator $(a+ib)(c+id) = (ac-bd) + i(bc+ad)$, which is commutative,
-and they have a multiplicative and additive identity. They are therefore a ring.
+\[ \mathbb{Z}[i] = \{a+ib:a,b\in \mathbb{Z}, i=\sqrt{-1}\}\]
+
+The Gaussian integers are closed under the standard multiplication operator
+$(a+ib) \times (c+id) = (ac-bd) + i(bc+ad)$, which is commutative (meaning
+$z_1 \times z_2 = z_2 \times z_1$), and they have a multiplicative and additive
+identity. They are therefore a ring.
 
 By defining a norm function $N(a+bi) = a^2+b^2$, we can also define Euclidean division of
 Gaussian integers. That is, for $a,b \in \mathbb{Z}[i]$, there exist $q,r \in \mathbb{Z}[i],
@@ -74,7 +77,7 @@ Since $\gcd(a,p)=1$: $n-m\equiv 0 \pmod{p} \implies n = m \pmod{p}$. Therefore:
 
 \[ \{i: 0 < i < p, i \in \mathbb{N}\} = \{a\times i, 0 < i < p, i \in \mathbb{N} \} \]
 
-That is, the set of the non-zero integers mod $p$ iis a derangement of itself when we 
+That is, the set of the non-zero integers mod $p$ is a derangement of itself when we 
 multiply each element by any member of the set, so if we multiply all of the elements
 together we get the same number. That is:
 
@@ -92,7 +95,7 @@ certain value.
 
 Fermat's Little Theorem proves that all numbers $\pmod{p}$ have a multiplicative order of at
 most $p-1$, but clearly there are numbers with a smaller order. For example, $1^i = 1$ for all
-$i$, and $(-1)^i = 1$ for all event $i$.
+$i$, and $(-1)^i = 1$ for all even $i$.
 
 Quadratic residues in $\mathbb{Z}/p\mathbb{Z}$ are numbers which have a square root in
 $\mathbb{Z}/p\mathbb{Z}$. For example, in $\mathbb{Z}/5\mathbb{Z}$, $1^2 \equiv 4^2 \equiv 1
@@ -101,10 +104,11 @@ $\pmod{5}$. We can show that for a prime $p$, exactly $\frac{p+1}{2}$ of the mem
 $\mathbb{Z}/p\mathbb{Z}$ are quadratic residues (including 0), and $\frac{p-1}{2}$ are quadratic
 non-residues.
 
-In particular, 1 has two square roots $\pmod{p}: \pm 1$. If we can show that $\sqrt{a^{p-1}} = 1$,
+In particular, 1 has two square roots $\pmod{p}: \pm 1$. If we can show that 
+\[\sqrt{a^{p-1}} = a^{\frac{p-1}{2}} = 1\]
 then that implies that there is some number $m \in \mathbb{Z}/p\mathbb{Z}$ such that $m^2 = a$,
-since $m^{p-1} = 1$. This test for quadratic residues is called Euler's criterion, and is formally
-defined for odd primes as:
+since $m^{p-1} = 1$ for all $m \neq 0$. This test for quadratic residues is called Euler's
+criterion, and is formally defined for odd primes as:
 \[a^{\frac{p-1}{2}} =
 \left\{
 	\begin{array}{ll}
@@ -124,11 +128,11 @@ $a^2+b^2 = 0,1 \mbox{ or } 2 \pmod{4}$, but $p \equiv 3 \pmod{4}$.
 Now, for $p=4k+1$, we must show that there exist $a,b \in \mathbb{N}$ such that $p=a^2+b^2$. There
 is a second question, regarding the uniqueness of this solution, which we will not prove here.
 
-First, note that $(-1)^{\frac{p-1}{2}} = 1$ since $\frac{p-1}{2}=2k$, so -1 is a quadratic
+Note that $(-1)^{\frac{p-1}{2}} = 1$ since $\frac{p-1}{2}=2k$, so -1 is a quadratic
 residue $\pmod{p}$. Therefore, there must be an $a \in \mathbb{Z}/p\mathbb{Z}$ such that
-$a^2 + 1 \equiv 0 \pmod{p}$. Now, in $\mathbb{Z}[i]/(p)$, we can factor $m^2+1$ into
-$(m-i)(m+i)$. Since $N(m+i)=N(m-i)<N(p)$ (since $m < p$), $p$ does not divide either $m+i$ or
-$m-i$, and therefore, $p$ is not a prime in $\mathbb{Z}[i]/(p)$, so there exists some Gaussian 
+$a^2 + 1 \equiv 0 \pmod{p}$. Now, in $\mathbb{Z}[i]/(p)$, we can factor $a^2+1$ into
+$(a-i)(a+i)$. Since $N(a+i)=N(a-i)<N(p)$ (since $a < p$), $p$ does not divide either $a+i$ or
+$a-i$, and therefore, $p$ is not a prime in $\mathbb{Z}[i]/(p)$, so there exists some Gaussian 
 prime factorization of $p = (x+iy)(x-iy)$ - giving $p = x^2+y^2$.
 
 I like this proof, because once we know that the Gaussian integers are a UFD, we can use all of
@@ -167,31 +171,27 @@ onto it, and every element of the domain maps onto a different element of the ra
 As a result, points in a set can have an order of 1 ($f(x)=x$, or $x$ is a fixed point
 of $f$) or 2 ($f(x)=y, y(y)=x, x\neq y$) under an involution.
 
-The key to this proof is to notice that if you have two involutions on the same set,
-then if there is one fixed point in the first, that means that there are some number of
-pairs of points that map to each other, and one fixed point that maps to itself, so the
-total number of solutions must be odd.
+If you have two involutions on the same set, then if there is one fixed point in the first,
+that means that the total number of solutions is odd (one fixed points and $k$ pairs of
+points of order 2).
 
 Then if there is a second involution, that must also apply to the same odd number of
-elements of the set, and as a result, there must be at least one fixed point in the
-second involution too.
+elements of the set, and as a result, there must be an odd number of fixed points in this second involution too (specifically, at least one fixed point)
 
-This is a very cute proof, but depends on a few things that go unproved: Are both of
-the mappings described actually involutions? Is every solution to $p=x^2+4yz$ covered?
-And where did that very complicated mapping come from? The time has come to talk about
+But where did that very complicated mapping come from? The time has come to talk about
 windmills.
 
 \subsection{Geometric representation of triples $(x,y,z)$}
 
-Let's tease apart the "one-like" proof to see what's going on graphically.
+Let's tease apart the "one-line" proof to see what's going on graphically.
 
 First, let us verify that the involutions actually make sense.
 
 For the members of the set $S=\{(x,y,z):p=x^2+4yz, x, y, z \in \mathbb{N}\}$, since
-$p = 4k+1$, it is odd, and since $4yz$ is even, $x$ can be any odd number less than
+$p = 4k+1$, and $4yz$ is even, $x$ can be any odd number less than
 $\sqrt{p}$. Since we are guaranteed that $x=2a+1$ for $a\in \mathbb{N}_0$, we can be
 sure that $p-x^2 = 4k+1 -(4a^2+4a+1) = 4(k-a^2-a)$ is a multiple of 4, with $k>a^2+a$.
-$(x,y,z) \in S \implies (x,z,y) \in S$ - so we are guarantees that the first
+$(x,y,z) \in S \implies (x,z,y) \in S$ - so we are guaranteed that the first
 transformation is an involution.
 
 For the second transformation, we can consider a triple $(x,y,z)$ as a geometric
@@ -222,7 +222,7 @@ the windmill pattern is clearer.
 	\label{fig:windmill2}
 \end{figure}
 
-The key insight is that there are exactly two representations in $(x,y,z)$ for each shape
+There are exactly two representations in $(x,y,z)$ for each shape
 which is a solution to $p=x^2+4yz$, representing different ways of "wrapping" the
 rectangles around the inside square, except for one representation, which is represented
 by $(x,y,z) = (1,1,k)$ - this shape is a 1x1 square in the center, and four long and thin
@@ -257,7 +257,7 @@ Now we repeat with $11 + 7i, 3i$, noting that $N(3i) = 9$:
 \[ \frac{11+7i}{3i} = \frac{(11 + 7i)(-3i)}{9} = \frac{7 -11i}{3} \]
 \[ 11 + 7i = (2 - 4i)(3i) +i \]
 
-And the GCD is the unit $i$.
+And the GCD is the unit $i$ (or 1).
 
 \end{document}
 
