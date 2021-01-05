@@ -1,0 +1,278 @@
+\documentclass{article}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsthm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{problem}{Problem}
+
+\begin{document}
+\title{Finding Formulae for Power Sums}
+\author{Dave Neary}
+
+\maketitle
+
+\section{Introduction}
+
+When people are first introduced to sequences and series, one of the first formulae
+they learn is the formula for the sum of the first $n$ positive integers. This 
+series has been made famous by an anecdote that when Gauss was a school boy, his
+teacher, wanting to keep the class busy for a few minutes while they stepped out,
+told the class to calculate the sum of the positive whole numbers to 100. Before he
+had reached the door, a young Gauss had shouted out the answer.
+
+The "trick" that Gauss used was to realize that by inverting the order of the series
+and aligning terms, then adding the two lines, he could simplify things:
+
+\begin{alignat*}{6}
+	S &=& 1   &+& 2  &+& \cdots &+& 99 &+& 100 \\
+	 S &=& 100 &+& 99 &+& \cdots &+& 2  &+& 1 \\
+	2S &=& 101 &+& 101 &+& \cdots &+& 101 &+& 101 \\
+\end{alignat*}
+
+In other words, $2S = 100(101), S=5050$, and in general, $S(n) = \frac{(n)(n+1)}{2}$.
+
+The challenge of deriving a closed formula for the powers of integers is an
+interesting one, which has resulted in some beautiful mathematics. I will present
+one way to prove a given formula using induction, and three different ways to derive
+the formula for:
+
+\[ S_k(n) = \sum_{i=1}^{n} i^k \]
+
+These three methods will use the Binomial theorem, a combinatorical identity, and
+exponential generating functions.
+
+\section{Proof by induction}
+
+Can we prove, given a formula for $S_k(n)$, that it is true for all $n$? One method
+to do so is to use induction. The inductive principle says that if something is true
+of the first member of a list, and whenever it is true of a member of the list,
+it is also true for the next member of the list, then it is true for every member.
+
+The inductive step starts with the assumption that the condition is true for the
+$n^\text{th}$ element of the list, and then starting from that assumption, proving
+that the condition must also be true for the next, feels a bit like cheating, so
+let's see it in action.
+
+\begin{problem} Prove that for all $n \in \mathbb{N}$:
+	\[ \sum_{i=1}^{n} i^2 = \frac{(n)(n+1)(2n+1)}{6} \]
+\end{problem}
+
+\begin{proof}
+	If $n = 1$, then $1^2 = \frac{(1)(2)(3)}{6} = 1$, so for the base case, the formula is valid.
+
+	Now assume it is true for $n=k$ = that is:
+	\[ \sum_{i=1}^{k} i^2 = \frac{(k)(k+1)(2k+1)}{6} \]
+
+	Then for $n=k+1$:
+	\begin{align*}
+		\sum_{i=1}^{k+1} i^2 &= \sum_{i=1}^{k} i^2 + (k+1)^2 \\
+		 &= \frac{(k)(k+1)(2k+1)}{6} + (k+1)^2 \\
+		 &= \left(k+1\right)\left(\frac{(k)(2k+1) + 6(k+1)}{6}\right) \\
+		 &= \left(k+1\right)\left(\frac{2k^2 +7k +6}{6}\right) \\
+		 &= \left(k+1\right)\left(\frac{(k+2)(2k+3)}{6}\right) \\
+		 &= \frac{(k+1)((k+1)+1)(2(k+1)+1)}{6}
+	\end{align*}
+	
+	Since we have shown that if the formula is valid for $n=k$, then it must also
+	be valid for $n=k+1$, and since we have further shown that it is valid for $n=1$,
+	therefore, by induction, it is true for all $n \in \mathbb{N}$.
+\end{proof}
+
+\section{Binomial expansion}
+
+The Binomial theorem states that:
+\[ (x + y)^n = \sum_{i=0}^{n} \binom{n}{i}x^{n-i}y^{i} \]
+where $\binom{n}{i} = \frac{(n)(n-1)(\cdots)(n-i+1)}{i!}$ for 
+$n \in \mathbb{R}, i \in \mathbb{N}_0$, where $i! = i\times(i-1)!$ and $0!=1$ is the
+factorial function. For positive integer values of $n$, we can write this as $\frac{n!}{k!(n-k)!}$.
+
+For example:
+\begin{align*}
+	(x+y)^5 &= \binom{5}{0}x^5 + \binom{5}{1}x^4y + \binom{5}{2}x^3y^2 + 
+	\binom{5}{3}x^2y^3 + \binom{5}{4}xy^4 + \binom{5}{5}y^5 \\
+	 &= x^5 + 5x^4y + 10x^3y^2 + 10x^2y^3 + 5xy^4 + y^5
+\end{align*}
+
+Unsurprisingly, since $(x+y)^n = (y+x)^n$, the binomial coefficients are symmetrical.
+That is, $\binom{n}{k} = \binom{n}{n-k}$.
+
+To find a formula for the sum of the squares of the sequence of integers, we will use the
+Binomial expansion of the next power up. That is:
+\[(n+1)^3 = n^3 + 3n^2 + 3n + 1 \]
+
+This gives us an expression for the difference between consecutive cubes, which we can add for
+all integers less than $n$:
+
+\begin{alignat*}{5}
+	(n+1)^3 &-& n^3     &=& 3n^2     &+& 3n     &+& 1 \\
+	n^3     &-& (n-1)^3 &=& 3(n-1)^2 &+& 3(n-1) &+& 1 \\
+	      &\vdots&      &=&       &\vdots&  &\vdots& \\
+	3^3     &-& 2^3     &=& 3(2^2)   &+& 3(2) &+& 1 \\
+	2^3     &-& 1^3     &=& 3(1^2)   &+& 3(1) &+& 1 \\
+\end{alignat*}
+
+Now if we add the left-hand side, we see that a number of terms cancel out, and we can replace
+$\sum_{i=1}^{n} i$ with the formula we derived earlier to get a closed formula for
+$\sum_{i=1}^{n} i^2$.
+
+\begin{align*}
+	3\sum_{i=1}^{n} i^2 + 3\sum_{i=1}^{n} i + n &= (n+1)^3 - 1^3 \\
+	3\sum_{i=1}^{n} i^2 &= n^3 +3n^2+3n - \frac{3(n)(n+1)}{2} - n \\
+	3\sum_{i=1}^{n} i^2 &= \frac{1}{2}\left(2n^3 +6n^2+6n - 3n^2 -3n - 2n\right) \\
+	\sum_{i=1}^{n} i^2  &= \frac{1}{6}\left(2n^3 +3n^2+n\right) \\
+	\sum_{i=1}^{n} i^2  &= \frac{1}{6}\left((n)(n+1)(2n+1)\right) 
+\end{align*} 
+
+We can use this method for higher exponents $k$ and, as long as we have formulae for all 
+of the lower exponents, we can always generate an explicit formula using this method for
+$\sum_{i=1}^{n} i^k$.
+
+\section{Using a Binomial identity}
+
+\subsection{Pascal's Triangle}
+
+The second method is closely related to the first, but avoids the requirement to derive
+a formula for all of the lower order exponents. We will use a binomial identity which
+we can derive from the well-known property of binomial coefficients which gives us
+Pascal's triangle, namely:
+\[\binom{n}{k} + \binom{n}{k+1} = \binom{n+1}{k+1} \]
+
+We can prove this identity as follows:
+
+\begin{align*}
+	\binom{n}{k} + \binom{n}{k+1} &= \frac{n!}{k!(n-k)!} + \frac{n!}{(k+1)!(n-k-1)!} \\
+	&= \frac{n!}{k!(n-k-1)!}\left(\frac{1}{n-k} + \frac{1}{k+1}\right) \\
+	&= \frac{n!}{k!(n-k-1)!}\left(\frac{(k+1)+(n-k)}{(n-k)(k+1)}\right) \\
+	&= \frac{(n+1)!}{(k+1)!((n+1)-(k+1))!} \\
+	&= \binom{n+1}{k+1}
+\end{align*}
+
+For those who have not heard of it, Pascal's Triangle is an arrangement of the
+binomial coefficients in a triangle, and each term in the triangle is the sum of the two
+terms directly above it. The first five rows are as follows:
+
+\begin{tabular}{rccccccccc}
+$n=0$:&    &    &    &    &  1\\\noalign{\smallskip\smallskip}
+$n=1$:&    &    &    &  1 &    &  1\\\noalign{\smallskip\smallskip}
+$n=2$:&    &    &  1 &    &  2 &    &  1\\\noalign{\smallskip\smallskip}
+$n=3$:&    &  1 &    &  3 &    &  3 &    &  1\\\noalign{\smallskip\smallskip}
+$n=4$:&  1 &    &  4 &    &  6 &    &  4 &    &  1\\\noalign{\smallskip\smallskip}
+\end{tabular}
+
+Each line represents the coefficients of a binomial expansion. For example, the line $n=3$
+corresponds to $\binom{3}{0}, \binom{3}{1}, \binom{3}{2}, \binom{3}{3}$.
+
+By examining Pascal's Triangle (or repeatedly applying the identity above), you can generate
+some interesting identities. The one we are interested in is:
+\[ \sum_{i=1}^{n} \binom{i}{k} = \binom{n+1}{k+1} \]
+
+This does require some clarification for the value of $\binom{n}{k}$ when $k>n$. In this case, we use the formula for the binomial coefficient we introduced originally:
+\[ \binom{n}{k} = \frac{(n)(n-1)(\cdots)(n-k+1)}{k!} \]
+
+For $n<k$ this will yield $\binom{n}{k} = 0$ - and in the context of an interpretation of
+this meaning the number of ways we can "choose $k$ items from $n$ options", this makes sense, as it is impossible to choose $k$ items from fewer than $k$ choices.
+
+This identity corresponds to adding up all of the numbers on the diagonal one over from the
+number of interest in Pascal's Triangle. For example:
+\[ \binom{5}{3} = \binom{4}{2} + \binom{3}{2} + \binom{2}{2} = 6 + 3 + 1 \]
+
+We can justify this by repeatedly applying the binomial identity:
+\begin{align*}
+	\binom{n+1}{k+1} &= \binom{n}{k} + \binom{n}{k+1} \\
+	&= \binom{n}{k} + \binom{n-1}{k} + \binom{n-1}{k+1} \\
+	&= \binom{n}{k} + \binom{n-1}{k} + \binom{n-2}{k} + \binom{n-2}{k+1} \\
+	&\vdots \\
+	&= \sum_{i=1}^{n} \binom{i}{k} 
+\end{align*}
+
+\subsection{Applying the Identity}
+
+$\binom{n}{k}$ is a polynomial in $n$ of order $k$. For example:
+\[ \binom{n}{3} = \frac{1}{6}(n)(n-1)(n-2) = \frac{1}{6}(n^3-3n^2+2n) \]
+
+We can express $n^k$ as a linear combination of $\binom{n}{i}$ for $i\leq k$. For $n=3$,
+to continue with that example, we have that:
+\begin{align*}
+	n^3 &= 6\binom{n}{3} +3n^2-2n \\
+	&= 6\binom{n}{3} + 6 \binom{n}{2} +\binom{n}{1}
+\end{align*}
+
+In this case, we can now apply this identity along with the one above to get a formula
+for the sum of cubes:
+
+\begin{align*}
+	\sum_{i=1}^{n} i^3 &= 6\sum_{i=1}^{n} \binom{i}{3} + 6\sum_{i=1}^{n} \binom{i}{2}
+	+ \sum_{i=1}^{n} \binom{i}{1} \\
+	&= 6\binom{n+1}{4} +6\binom{n+1}{3} + \binom{n+1}{2} \\
+	&= 6\frac{(n+1)(n)(n-1)(n-2)}{24} +6 \frac{(n+1)(n)(n-1)}{6} + \frac{(n+1)(n)}{2} \\
+	&= (n+1)(n) \frac{(n-1)(n-2) + 4(n-1) + 2}{4} \\
+	&= \left(\frac{n(n+1)}{2}\right)^2
+\end{align*}
+
+Again, we can use this method for arbitrary values of $k$.
+
+It is straightforward to calculate the values of the coefficients of $\binom{n}{i}$ in
+the linear combination when we realize that the equation must be true for all values of
+$n$, and (as we saw earlier) $\binom{n}{k} = 0$ if $n<k$. So for example, if we wanted to 
+calculate the sum $\sum_{i=1}^{n} i^4$, we could use:
+\[ n^4 = a_1\binom{n}{1} + a_2\binom{n}{2} + a_3 \binom{n}{3} + a_4 \binom{n}{4} \]
+Setting $n=1$, we get the equation:
+\[ 1^4 = a_1\binom{1}{1} \implies a_1 = 1 \]
+
+Now setting $n=2$:
+\[ 2^4 = a_1\binom{2}{1} + a_2\binom{2}{2} \implies a_2 = 16-2 = 14 \]
+
+With $n=3$:
+\[ 3^4 = a_1\binom{3}{1} + a_2\binom{3}{2} + a_3\binom{3}{3}\]
+\[\implies a_3 = 81 -3(14) - 3(1)  = 36 \]
+
+Finally, for $n=4$:
+\[ 4^4 = a_1\binom{4}{1} + a_2\binom{4}{2} + a_3\binom{4}{3} + a_4\binom{4}{4}\]
+\[\implies a_3 = 256 -4(36) - 6(14) - 4(1))  = 24\]
+
+So we have:
+\[ n^4 = \binom{n}{1} + 14\binom{n}{2} + 36 \binom{n}{3} + 24 \binom{n}{4} \]
+
+And:
+\begin{align*}
+	\sum_{i=1}^{n} i^4 &= \binom{n+1}{2} + 14\binom{n+1}{3} + 36 \binom{n+1}{4}
+	                      + 24 \binom{n+1}{5} \\
+			   &= \frac{1}{30} (n)(n + 1)(2n + 1)(3n^2 +3n - 1)
+\end{align*}
+
+\section{Exponential Generating Functions}
+
+I think my favourite method for deriving these formulae, because it feels the most like
+magic, and because it has a deep connection to numbers that arise in areas of
+physics called Bernoulli numbers, is to use generating functions.
+
+A Generating Function is a polynomial representation of a sequence $\{a_n\}$ such that
+$a_i$ is the coefficient of $x^i$ for each $i \geq 0$. For example, the sequence 
+$\{1, \frac{1}{2}, \frac{1}{4}, \frac{1}{8}, \cdots \}$ corresponds to the polynomial
+\[ P(x) = 1 + \frac{x}{2} + \frac{x^2}{4} + \frac{x^3}{8} + \cdots \]
+
+We have a lot of tools for manipulating generating functions, as long as they satisfy
+certain constraints. For example, we can take term-wise derivatives or integrals of
+the terms to generate new identities or to calculate complicated infinite sums.
+
+In the case of $P(x)$, you might recognize it as a geometric series. If it is convergent,
+we can manipulate it as follows:
+
+\[ \frac{x}{2} P(x) = \frac{x}{2} + \frac{x^2}{4} + \frac{x^3}{8} + \cdots \]
+\[ P(x) - \frac{x}{2} P(x) = 1 \]
+\[ P(x) = \frac{1}{1-\frac{x}{2}} \]
+
+An exponential generating function is similar, but with one difference. Given the sequence
+$\{a_n\}$, the generating function is:
+\[ P(x) = a_0 + \frac{a_1x}{1!} + \frac{a_2x^2}{2!} + \frac{a_3x^3}{3!} + \cdots \]
+
+That is, each term is of the form $\frac{a_nx^n}{n!}$. What this gains us is that we are
+guaranteed convergence for any sequence which does not grow exponentially. It also gives
+us the ability to manipulate sequences using exponential rules, if we are lucky.
+
+
+
+\end{document}
