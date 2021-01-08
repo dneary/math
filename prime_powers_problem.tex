@@ -1,0 +1,108 @@
+\documentclass{article}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsthm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{problem}{Problem}
+
+\begin{document}
+\title{Problems with primes}
+\author{Dave Neary}
+
+\section{When is $1+p+p^2+p^3+p^4$ prime for prime $p$?}
+
+\begin{problem}
+	Given a prime number $p$, when is the sum of all of the positive factors of $p^4$
+	a perfect square?
+\end{problem}
+
+\begin{proof}
+	Since $p$ is a prime number, the only factors of $p^4$ are of the form
+	$p^i, i \in \{0,1,2,3,4\}$. The sum of the factors is thus:
+	\[ 1+p+p^2+p^3+p^4 = \frac{p^5-1}{p-1} \]
+	
+	Let's call this sum of powers of $p$ $f(p)$ for convenience. We begin our search
+	with some exploration. When $n=2, 3, 5, 7, 11$ we obtain the following values:
+	\begin{center}
+		\begin{tabular}{ |c|c|c| }
+			\hline
+			$p$ & $f(p)$ & round($\sqrt{f(p)}$)$^2$ \\
+			\hline
+		2 & 31 & $6^2=36$ \\
+		3 & 121 & $11^2=121$ \\
+		5 & 781 & $28^2=784$ \\ 
+		7 & 2801 & $53^2=2809$ \\ 
+		11 & 16105 & $127^2=16129$ \\ 
+		\hline 
+		\end{tabular}
+	\end{center}
+
+	3 is the only prime that produces a perfect square so far, and it seems like there
+	is always a square close above the other odd primes. It's also interesting to note
+	that the square close to $f(p)$ is a little more than the square of the square of our
+	prime (not surprising given the $p^4$ term which will dominate as $p$ grows larger):
+	$28 = 5^2 + 3, 53 = 7^2 + 4, 127=11^2 + 6$.
+
+	Let's see if we can get close to $f(p)$ with the square of a quadratic expression.
+	Clearly such a quadratic will be of the form:
+	\[ (p^2 + ap + b)^2 = p^4 + 2ap^3 + (a^2+2b)p^2 + 2abp + b^2\]
+
+	It makes sense to let $a=\frac{1}{2}$, then:
+	\[(p^2 + \frac{p}{2} + b)^2 = p^4 + p^3 + (\frac{1}{4}+2b)p^2 + bp + b^2 \]
+
+	Given that $p$ is an odd prime, we can turn this into an integer expression by
+	setting $b=\frac{1}{2}$: 
+	\[ (p^2 + \frac{p+1}{2})^2 = p^4 + p^3 + \frac{5p^2}{4}p^2 + \frac{p}{2} + \frac{1}{4} \]
+	\[ = \sum_{i=0}^4 p^i + \frac{1}{4}p^2 - \frac{p}{2} - \frac{3}{4} \]
+
+	So we can write:
+	\[ (p^2 + \frac{p+1}{2})^2 = \sum_{i=0}^4 p^i + \frac{1}{4}(p+1)(p-3) \]
+	or
+	\[ (p^2 + \frac{p+1}{2})^2 = \sum_{i=0}^4 p^i + \frac{1}{4}((p-1)^2-4) \]
+
+	So this is bigger than $\sum_{i=0}^4 p^i$ for all $p>3$ (and, as we saw earlier, is
+	equal for $p=3$). If we reduce the square by 1, can we prove that this is always
+	smaller than $\sum_{i=0}^4 p^i$?
+
+	\begin{align*}
+		(p^2 + \frac{p-1}{2})^2 &= p^4 + p^3 - \frac{3p^2}{4} - \frac{p}{2} + \frac{1}{4}\\
+		&= \sum_{i=0}^4 p^i -\frac{7}{4}p^2 - \frac{3}{2}p - \frac{3}{4} \\
+		&< \sum_{i=0}^4 p^i
+	\end{align*}
+	since $p>0$.
+
+	So we have shown that:
+	\[(p^2 + \frac{p-1}{2})^2 < \sum_{i=0}^4 p^i \leq (p^2 + \frac{p+1}{2})^2 \] 
+	with equality if and only if $\frac{1}{4}(p+1)(p-3) = 0$, or when $p=3$
+
+\end{proof}
+
+\section{When is $p^2 + q^2 + 2017$ a perfect square?}
+
+\begin{problem}
+        How many prime numbers $p, q$ make $p^2 + q^2 + 2017$ a perfect square?
+\end{problem}
+
+\begin{proof}
+	Consider the numbers $p^2,q^2,2017 \pmod{4}$.
+	\[2017 \equiv 1 \pmod{4} \]
+	If $p$ is odd, $p^2 \equiv 1 \pmod{4}$, and if $p$ is even, $p^2 \equiv 0 \pmod{4}$.
+
+	Then: 
+	\[ 2017 + p^2 + q^2 \pmod{4} \in \{1,2,3\} \]
+	with the value 1 when both $p,q$ are event, 2 if one of them is odd, and 3 if both
+	are odd.
+
+	For any integer $a$, $a^2 \equiv 0 \text{ or } 1 \pmod{4}$ - so both $p,q$ must be
+	even. The only even prime number is 2, so the only number we need to check is
+	\[ 2017 + 2^2 + 2^2 = 2025 = 45^2 \]
+
+	So the only answer is $(p,q) = (2,2)$.
+\end{proof}
+
+
+\end{document}
+
