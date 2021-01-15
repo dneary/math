@@ -11,9 +11,16 @@
 \newtheorem{question}{Q.}
 
 \begin{document}
-\title{Number Theory notes}
+\author{Dave Neary}
+\title{Fundamental Theorem of Algebra}
 
 \maketitle
+
+\section{Introduction}
+
+We will talk about some of the number systems you will come across, and work
+up to the Fundamental Theorem of Arithmetic: that positive whole numbers have
+a unique representation as the product of prime numbers.
 
 \section{Number systems}
 
@@ -133,121 +140,6 @@ factorial). How many trailing zeros are there in $25!$?\end{question}
 \begin{question}Write all the factors of $7^{21}$ and compute their sum.\end{question}
 \vspace*{\bigskipamount}
 
-\pagebreak
-
-\section{Modular arithmetic}
-
-Let's start this section with a question: $3.141592653589793238462643383279$ is the
-value of $\pi$ to 30 decimal places. Is the number 3141592653589793238462643383279
-the square of an integer?
-
-Rather than attempting to answer ths question directly, let's do some exploration
-of squares of integers, to see if we can find some common characteristics.
-
-\begin{table}[htb]
-\begin{tabular}{|c|c|c|}
-\hline
-	$n$ & $n^2$ & rem($\frac{n^2}{4}$) \\   
-\hline 
-	1 &  1 & 1 \\
-	2 &  4 & 0 \\
-	3 &  9 & 1 \\
-	4 & 16 & 0 \\
-	5 & 25 & 1 \\
-	6 & 36 & 0 \\
-	7 & 49 & 1 \\
-\hline 
-\end{tabular}
-\end{table}
-
-Interestingly, it seems like every even square has a remainder of 0 when we divide
-by 4, and every odd square has a remainder of 0. We can prove that this is the case
-in general quite easily:
-
-\[ n = 2k \implies n^2 = 4k^2 \]
-\[ n = 2k+1 \implies n^2 = 4k^2 + 4k + 1 = 4(k^2+k) + 1 \]
-
-
-We can now return to our original question - a simple initial test for whether a
-number is a square of an integer is to check its remainder when divided by 4. And
-we only need to look at the last two digits to check because $100n+m =4(25n)+m$ -
-so we can ignore everything before the last 2 digits. In our example, 
-$79 = 4\times 19 + 3$, so the number at the start of this section is \textbf{not}
-the square of an integer.
-
-\subsection{Working with remainders}
-
-This example gives a glimpse of something called modular arithmetic - sometimes,
-we can draw conclusions related to a problem by looking only at the remainders
-when divided by a number. In terms of notation, we say that $a \equiv b \pmod{n}$
-when $a = m\cdot n+b$ for some integer $m$. In the example above, we can write:
-$a^2 \equiv 0 \text{ or } 1 \pmod{4} \text{ for all } a\in \mathbb{Z}$.
-
-There are a few operations that hold for all numbers $\pmod{n}$:
-
-Remainders are additive and multiplicative:
-\begin{eqnarray*}
-	(a\pmod{n}) + (b\pmod{n}) & = & (a+b)\pmod{n} \\
-	(a\pmod{n}) \cdot (b\pmod{n}) & = & (a\cdot b) \pmod{n}
-\end{eqnarray*}
-
-So we can tell that if $a=76$ and $b=42$, when we multiply them together, the
-remainder when we divide the result by 5 will be $76 \pmod{5} \times 42 \pmod{5}
-= 1\times 2 \pmod{5}$. We say that $a \equiv b \pmod{n}$ ($a$ is congruent to $b$
-mod $n$) if $n|(a-b)$ - that is, if we subtract one number from another, and they
-have the same remainder when divided by $n$, then their difference is a multiple
-of $n$.  
-
-Just the basics of modular arithmetic allow us to address a whole range of problems already.
-
-\begin{question}Prove that $6\cdot 4^n - 6$ is divsible by 9 for all $n$.\end{question}
-\emph{Proof:} Let's look at the values of $6 \cdot 4^n \pmod{9}$ for different
-values of $n$. 
-
-\begin{table}[htb]
-\begin{tabular}{|c|c|c|}
-\hline
-	$n$ & $4^n \pmod{9}$ & $6\cdot 4^n \pmod{n}$\\   
-\hline 
-	0 & 1 & 6 \\
-	1 & 4 & 6 \\
-	2 & 7 & 6 \\
-	3 & 1 & 6 \\
-\hline 
-\end{tabular}
-\end{table}
-
-Clearly, $4^n$ cycles through the values 1, 4, 7 for all $n$, and each of these multiplied
-by $6$ gives a remainder of 6 when divided by 9. Another way of putting this is that
-$4^n \equiv 1 +3k \pmod{9}$ for $n\equiv k \pmod{3}$, and since $6\cdot 3 = 18 \equiv 0 \pmod{9}$
-$6\times (1+3k) \equiv 6 \pmod{9}$ for all $n$.
-
-\begin{question}What are the last two digits base 10 of $6^{19}$?\end{question}
-
-\emph{Answer:} This is an intimidating looking question, but modular arithmetic offers us a
-powerful tool to simplify things. $6^2 = 36 \pmod{100}$, $6^3 = 216 \equiv 16 \pmod{100}$,
-$6^4 \equiv 96 \pmod{100} \equiv -4 \pmod{100}$, $(6^4)^2 = 6^8 \equiv (-4^2) = 16 \pmod{100}$
-So we have $6^8 \equiv 6^3 \pmod{100}$ But now we have: 
-\begin{eqnarray*}
-	6^{19} & =&  (6^8)^2\cdot 6^3 \\
-               & \equiv & (6^3)^3 \pmod{100} \\
-	       & \equiv & 6^{9} \pmod{100} \\
-	       & \equiv & 6^8\cdot 6 \pmod{100} \\
-	       & \equiv & 6^4 \pmod{100} \\
-	       & \equiv & 96 \pmod{100} 
-\end{eqnarray*}
-
-You can use modular arithmetic to prove common divisibility tricks.
-
-\begin{question}Prove that 9 divides a number if and only if it divides the sum of its digits.\end{question}
-\vspace*{\bigskipamount}
-
-\begin{question}Prove that a number is divisible by 8 if its last 3 digits are divisible by 8.\end{question}
-\vspace*{\bigskipamount}
-
-\begin{question}Prove that a number is divisible by 11 if the sum of its even digits minus the
-sum of its odd digits is divisible by 11.\end{question}
-\vspace*{\bigskipamount}
 
 \end{document}
 
