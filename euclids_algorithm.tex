@@ -6,8 +6,8 @@
 \usepackage{graphicx}
 \usepackage{amsthm}
 
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{question}{Question}[section]
+\newtheorem{theorem}{Theorem}
+\newtheorem{question}{Question}
 
 \begin{document}
 
@@ -61,9 +61,9 @@ Let $k = \gcd(a,b)$. Then $a=km, b=kn, \gcd(n,m) = 1$.
 
 We are given:
 \begin{eqnarray*}
- a &=& qb+r \\
-\implies r &=& a-qb \\
-\implies r &=& k(m-qn) 
+	 a &=& qb+r \\
+	\implies r &=& a-qb \\
+	\implies r &=& k(m-qn) 
 \end{eqnarray*}
 So $r$ is a multiple of $k$.
 
@@ -79,14 +79,16 @@ in the prior step is the GCD.
 
 Let's work through an example to see it in action.
 
-\begin{question} Find the GCD of 1128 and 33. \end{question}
-\begin{proof}
-\begin{eqnarray*}
-1128 &=& 34\times 33 + 6 \\
-33 &=& 5\times 6 + 3 \\
-6 &=& 2 \times 3 + 0   
-\end{eqnarray*}
-So the GCD of 1128 and 33 is 3 (the last non-zero remainder).
+\begin{question}
+Find the GCD of 1128 and 33.
+\end{question}
+\begin{proof}[Answer]
+	\begin{eqnarray*}
+		1128 &=& 34\times 33 + 6 \\
+		33 &=& 5\times 6 + 3 \\
+		6 &=& 2 \times 3 + 0   
+	\end{eqnarray*}
+	So the GCD of 1128 and 33 is 3 (the last non-zero remainder).
 \end{proof}
 
 \begin{question} Find the GCD of 6540 and 1206. \end{question}
@@ -114,7 +116,7 @@ Let's work through an example to see how it works:
 	Find an integer solution to:
 	\[ 267x + 112y = 3 \]
 \end{question}
-\begin{proof}
+\begin{proof}[Answer]
 	Let's start by calculating the GCD of 267 and 112 using Euclid's algorithm, and also
 	noting the form $r = a-qb$ at each step:
 	\begin{align*}
@@ -157,7 +159,7 @@ another example, and some exercises:
 What is the inverse of 10 modulo 17?
 \end{question}
 
-\begin{proof}
+\begin{proof}[Answer]
 	The multiplicative inverse of $k \pmod{n}$ in modular arithmetic is an integer which, when you
 	multiply it by $k$, gives a result of $1 \pmod{n}$
 
