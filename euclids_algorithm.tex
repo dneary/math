@@ -5,6 +5,9 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{amsthm}
+\usepackage{hyperref}
+
+\newcommand*{\thead}[1]{\multicolumn{1}{|c|}{\bfseries #1}}
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{question}{Question}
@@ -80,7 +83,7 @@ in the prior step is the GCD.
 Let's work through an example to see it in action.
 
 \begin{question}
-Find the GCD of 1128 and 33.
+Find the GCD of 1128\ and 33.
 \end{question}
 \begin{proof}[Answer]
 	\begin{eqnarray*}
@@ -153,7 +156,69 @@ Let's work through an example to see how it works:
 \end{proof}
 
 Questions of this type often arise with different notation or ways of framing the question. Here are
-another example, and some exercises:
+another could of examples, and some exercises:
+
+\begin{question}
+	Detective John McLain and Zeus, a New York small business owner in the wrong place at the wrong
+	time, are directed by the mysterious terrorist Simon to a fountain in Central Park, where they
+	find an armed bomb. They are given an enigma to solve to defuse the bomb.
+
+	Given a 3 gallon jug and a 5 gallon jug, how can they measure out exactly 4 gallons to put
+	on the scale and defuse the bomb?
+\end{question}
+
+\begin{proof}[Answer]
+	We can now recognize this as a simple application of B\'ezout's Identity. We want to find integers
+	$a, b$ such that $5a + 3b = 4$. It is straightforward to find values of $a$ and $b$ that work,
+	but we will run through the algorithm to find the general solution.
+
+	\begin{align*}
+		5 &= 1 \times 3 + 2 & 2 &= 5 - 3  \\
+		3 &= 1 \times 2 + 1 & 1 &= 3 - 2 \\
+		& & 1 &= 3 - (5 - 3) = 2(3) - 5
+	\end{align*}
+
+	Our base solution is:
+	\[ 3(2) + 5(-1) = 1\]
+	and multiplying across by 4, ww get 
+	\[ 3(8) + 5(-4) = 4\]
+
+	Adding and subtracting $15k$ to obtain the general solution gives us:
+	\[ 3(8-5k) + 5(3k-4) = 4\]
+
+	Now the smallest solution in terms of steps is at $k=2$, $2\times 5 - 2\times 3 = 4$. So we have
+	to fill up the five gallon drum twice, and empty out the 3 gallon drum twice.
+
+	\begin{figure}[ht!]
+	\includegraphics{mathologer.png}
+		\caption{\href{https://www.youtube.com/watch?v=0Oef3MHYEC0}{Mathologer
+		visual demonstration of this problem in action}}
+	\end{figure}
+
+	\vspace{1em}
+
+	\begin{tabular}{|l|c|c|r|}
+		\hline
+		\thead{Step} & \thead{5 Gallon Jug} & \thead{3 Gallon jug}\\
+		\hline
+		Fill 5G jug from fountain & 5 & 0 \\
+		Fill 3G jug from 5G jug & 2 & 3 \\
+		Empty 3G jug & 2 & 0 \\
+		Empty 5G jug into 3G jug & 0 & 2 \\
+		Fill 5G jug from fountain & 5 & 2 \\
+		Top up 3G jug from 5G jug & 4 & 3 \\
+		\hline
+		\multicolumn{3}{|c|}{\bfseries Weigh 5G jug} \\
+		\hline
+	\end{tabular}
+	
+	\vspace{1em}
+
+	Now - given the relationship to B\'ezout's identity, can you find
+	another solution which involves filling the 3G jug from the fountain?
+
+
+\end{proof}
 
 \begin{question}
 What is the inverse of 10 modulo 17?
