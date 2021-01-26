@@ -1,0 +1,48 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\title{Square root of 321}
+\author{Dave Neary}
+\date{January 2021}
+
+\begin{document}
+
+\section{Approximation of square roots}
+
+We can estimate square roots of numbers that are close to perfect squares. For example, $18^2 = 324$
+and
+\begin{eqnarray*}
+(18-x)^2& =& 321\\
+3 &=& 36x - x^2 \\
+\end{eqnarray*}
+
+Now, since $x$ will be small, $x^2$ will be negligible for a reasonable estimate. We can thus
+discard the $x^2$ term, giving:
+
+\[ x \approx \frac{3}{36} = \frac{1}{12}\]
+for small values of $x$. So $\sqrt{321} \approx 18 - \frac{1}{12}$.
+
+In general, if a number is close to a perfect square, we can write it as $n^2 + m$ for
+$m\in \mathbb{Z}$, and you can approximate the square root with:
+\[\sqrt{n^2+m} \approx n+\frac{m}{2n}\]
+
+This also works for higher powers! If a number is close to $n^k$, we write it as $n^k+m$, and:
+\[ \sqrt[k]{n^k+m} \approx n+\frac{m}{kn^{k-1}} \]
+
+This is the method that Richard Feynmann used to approximate the cube root of $1729$ when
+competing against an abacus salesman. $12^3 = 1728$ (which he knew from cubic inches in a cubic foot), so
+\[ \sqrt[3]{1729} \approx 12 + \frac{1}{3\times12^2} = 12+\frac{1}{432} \]
+
+We can also use the Binomial theorem extended to real exponents to get even closer approximations.
+\begin{eqnarray*}
+ \sqrt{321}& =& \sqrt{324 - 3} \\
+& = & 18 \left(1-\frac{1}{108}\right)^{\frac{1}{2}} \\
+& = &18 \left( 1 + \binom{\frac{1}{2}}{1}\left(\frac{-1}{108}\right) + \binom{\frac{1}{2}}{2}\left(\frac{1}{108^2}\right) + \cdots ) \right) \\
+& \approx & 18 \left(1 - \frac{1}{216} - \frac{1}{93312} - \cdots\right) \\
+& \approx & 18 - \frac{1}{12} - \frac{1}{5184} - \cdots
+\end{eqnarray*}
+where $\binom{x}{r} = \frac{(x)(x-1)(\cdots)(x-r+1)}{r!}$ for $x \in \mathbb{R}$.
+
+ \end{document}
