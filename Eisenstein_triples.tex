@@ -1,0 +1,150 @@
+\documentclass{article}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsthm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{problem}{Problem}
+
+\begin{document}
+
+\title{Eisenstein triples}
+\author{Dave Neary}
+
+\maketitle
+
+\section{Introduction}
+
+\begin{problem}
+	Find positive integer solutions to the equation:
+	\[ \frac{1}{a+b} + \frac{1}{b+c} = \frac{3}{a+b+c} \]
+\end{problem}
+
+Cross-multiplying by $a+b+c$:
+\[ \frac{a+b+c}{a+b} + \frac{a+b+c}{b+c} = 3 \]
+
+Then we can simplify:
+\begin{align*}
+	\frac{a+b}{a+b} + \frac{c}{a+b} + \frac{a}{b+c} + \frac{b+c}{b+c} &= 3 \\
+	\frac{c}{a+b} + \frac{a}{b+c} &= 1 \\
+	c(b+c) + a(a+b) &= (a+b)(b+c) \\
+	a^2 -ac +c^2 &= b^2
+\end{align*}
+
+\section{Geometric approach}
+
+The cosine rule for triangles is:
+\[ b^2 = a^2 + c^2 - 2ac \cos B \]
+
+The equation above is simply the cosine rule for triangles, applied with the angle 
+$B = \frac{\pi}{3}$ radians. So the lengths $a, b, c$ are side lengths of a triangle with 
+an angle of $\frac{\pi}{3}$ radians (or 60 degrees) at angle $B$. We could try some 
+geometric approaches at this point to try to find a general formula for integer lengths.
+
+One approach which can be used to find Pythagorean triples (that is, integers which are 
+the sides of a right-angled triangle) is to consider the unit circle:
+\[ x^2 + y^2 = 1 \]
+and to search for rational points on this circle. Then, if we find points
+$(\frac{a}{c},\frac{b}{c})$ on the circle, we can generate a Pythagorean triple $(a,b,c)$.
+
+And one way to do that is to consider the lines through the point $(-1,0)$ with a rational
+slope. For every rational number, this will intersect the unit circile in two points, and we
+can show that if the slope is rational, then the intersection points will also be rational.
+That is, given the equation $y = m(x+1)$, and the unit circle $x^2+y^2=1$, the intersection
+points satisfy:
+\begin{align*}
+	x^2+m^2(x+1)^2 &= 1 \\
+	(1+m^2)x^2 +2m^2x +(m^2-1) &= 0 \\
+	x &= \frac{-2m^2 \pm \sqrt{4m^4 -4(m^2+1)(m^2-1)}}{2(1+m^2)} \\
+	x &= \frac{-m^2 \pm 1}{m^2+1} = -1 \text{ or } \frac{1-m^2}{1+m^2} \\
+	y &= 0 \text{ or } \frac{2m}{1+m^2} 
+\end{align*}
+
+Which results in the familiar formula for generating Pythagoream triples $(m^2-n^2, 2mn, m^2+n^2)$.
+
+We can try a similar approach here with the ellipse $x^2-xy+y^2=1$. The line through the point 
+$(-1,0)$ will again be $y = m(x+1)$ and we can solve for the intersection points by substitution:
+
+\begin{align*}
+	x^2 - x(m(x+1)) + (m(x+1))^2 &= 1 \\
+	(1-m+m^2)x^2 +(2m^2-m)x +(m^2-1) &= 0 \\
+	x &= \frac{-(2m^2-m) \pm \sqrt{(2m^2-m)^2 -4(m^2-1)(1-m+m^2)}}{2(1-m+m^2)} \\
+	x &= \frac{-2m^2 +m \pm (m-2)}{2(m^2-m+1)} = -1 \text{ or } \frac{1-m^2}{1-m+m^2} \\
+	y &= 0 \text{ or } \frac{2m-m^2}{1-m+m^2} 
+\end{align*}
+
+Which means, given any rational number $m=\frac{a}{b}$ for which the line $y=m(x+1)$ intersects
+the ellipse in two places, we can find a rational point $(x,y)$ which will satisfy the equation
+of the ellipse.
+
+Let's check that it works: we will try $m=\frac{2}{5}$. Then:
+\[ (x,y) = \left(\frac{1 - (\frac{2}{5})^2}{1-\frac{2}{5} + (\frac{2}{5})^2}, 
+\frac{2(\frac{2}{5}) - (\frac{2}{5})^2}{1-\frac{2}{5} + (\frac{2}{5})^2} \right)\]
+Multiplying above and below the line of both by $5^2$, we get:
+
+\[ (x,y) = (\frac{5^2 - 2^2}{5^2- 2\times5 + 2^2}, 
+\frac{2\times2\times5 - 2^2}{5^2 - 2\times5 + 2^2}) = (\frac{21}{19},\frac{16}{19}) \]
+
+And we can check that $19^2 = 361 = 21^2 - 21\times 16 + 16^2 = 441-336+256$ gives us a triple
+satisfying the equation. We can repeat this for any rational number $\frac{m}{n}$ giving a triple
+$(a,b,c) = (n^2-m^2, 2mn - m^2, n^2-nm+m^2)$ with $a^2 - ab + b^2 = c^2$.
+
+\section{Eisenstein integers approach}
+
+By factoring $a^2 + b^2 = (a+ib)(a-ib)$ we can also generate Pythagorean triples. Defining 
+$N(a+ib) = a^2 + b^2$, we can show that $N(z_1 z_2) = N(z_1)N(z_2)$, and therefore, that:
+\begin{align*}
+	(m^2+n^2)^2 & = (N(m+in))^2 \\
+	&= N((m+in)^2) \\
+	&= N(m^2-n^2 + 2mni) \\
+	&= (m^2-n^2)^2 + (2mn)^2
+\end{align*}
+
+which gives the Pythagorean triple $(a,b,c) = (m^2-n^2,2mn,m^2+n^2)$.
+
+Inspired by this method of finding Pythagorean triples by squaring Gaussian integers, let's
+see if there is an analog for Eisenstein triples too. It is not a surprise to learn that there is,
+and that such complex numbers are known as Eisenstein integers.
+
+Starting from the equation $ a^2 - ab + b^2 = c^2$, we can complete the square, and factorize
+across the complex numbers, and see what happens.
+
+\begin{align*}
+	a^2 - ab + b^2 &= \left(a-\frac{b}{2}\right)^2 + \frac{3}{4}b^2 \\
+	&= \left(a-\frac{b}{2}\right)^2 + \left(\frac{\sqrt{3}b}{2}\right) \\
+	&= \left(a + b\frac{-1-\sqrt{3}}{2}\right)\left(a + b\frac{-1+\sqrt{3}}{2}\right) \\
+	&= \left(a + \omega b\right) \left(a + \omega^2 b\right)
+\end{align*}
+where $\omega$ is the primitive cube root of 1.
+
+Some results about the cube roots of 1:
+\[ 1 + \omega + \omega^2 = 0 \]
+\[ \omega^2 = \bar{\omega} = -1 - \omega\]
+\[ \omega^3 = 1 = \omega \bar{\omega} \]
+
+Eisenstein integers are any numbers that can be written in the form $a+\omega b$ for
+$a,b \in \mathbb{Z}$. They form a commutative ring (which means that they are closed under addition,
+multiplication, and both multiplication and addition operations are commutative and distributive, 
+and contain a multiplicative and additive identity).
+
+What makes them super useful for our purposes here is that we now have a way to express $c^2$ as a
+product of eisenstein integers:
+\[ c^2 = (a+\omega b) (a + \bar{\omega} b) \]
+
+And we can use the same norm argument that worked for Pythagorean triples here, if we define
+$N(m+\omega n) = m^2-mn+n^2$ (which is the standard complex number norm). Then:
+
+\begin{align*}
+	N((m+\omega n)^2) &= N(m^2+2mn\omega + n^2(-1-\omega)) \\
+	&= N(m^2-n^2+(2mn-n^2)\omega) \\
+	&= (m^2-n^2)^2 - (m^2-n^2)(2mn-n^2) + (2mn-n^2)^2 \\
+	N((m+\omega n)^2) &= (N(m+\omega n))^2 \\
+	&= (m^2 - mn + n^2)
+\end{align*}
+
+So we have found another method to prove that given $m,n \in \mathbb{Z}$ we can construct a triple
+$(a,b,c) = (m^2-n^2, 2mn-n^2, m+2-mn+n^2)$ such that $a^2-ab+b^2 = c^2$.
+
+\end{document}
