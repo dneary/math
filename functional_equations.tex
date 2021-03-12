@@ -1,0 +1,91 @@
+\documentclass{article}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsthm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{problem}{Problem}
+
+\begin{document}
+
+\title{Some functional equations}
+\author{Dave Neary}
+
+\maketitle
+
+\section{2001 Dutch IMO qualification}
+
+Suppose for all $x,y \in \mathbb{R}$ that we have:
+\[ f(x + y) = f(x) + f(y) + xy \]
+and $f(4) = 10$. Find $f(2001)$.
+
+Setting $x=y=2$:
+\[ f(4) = 10 = 2f(2) + 4 \implies f(2) = 3\]
+
+Setting $x=y=1$:
+\[ f(2) = 3 = 2f(r12) + 1 \implies f(1) = 1\]
+
+Setting $y=0$:
+\[ f(x) = f(x) + f(0) \implies f(0) = 0 \]
+
+Finally, setting $y=1$:
+\[ f(x+1) = f(x) + f(1) + x \]
+
+This is already enough for us to calculate $f(n)$ for all positive integers:
+\begin{align}
+	f(n) - f(n-1) & = n \\
+	& \vdots \\
+	f(1)-f(0) &= 1
+\end{align}
+Adding LHS and RHS we get:
+\[ f(n) = \sum_{i=1}^{n} i = \frac{1}{2}(n)(n+1) \]
+
+and $f(2001) = 2003001$.
+
+We can easily extend to show that the formula applies to negative integers:
+\[f(n + (-n)) f(0) = 0 = f(n) + f(-n) - n^2 \]
+\[ \implies f(-n) = n^2 - \frac{1}{2}(n)(n+1) = n^2 - \frac{n^2}{2} - \frac{n}{2} \]
+\[ \implies f(-n) = \frac{1}{2}(-n)(-n+1) \]
+
+
+The question remains, however: what class of functions satisfies the functional relationship in
+general, outside of integers?
+
+Since $f(nx) = f((n-1)x) + f(x) + (n-1)x^2$, we can show by simple iteration that:
+\[ f(nx) = nf(x) + x^2((n-1)+(n-2)+\cdots + 1) = nf(x) + \frac{(n)(n-1)}{2} x^2 \]
+
+From above, we know that $f(n) = \frac{1}{2}(n)(n+1)$ for $n\in \mathbb{Z}$, so
+for $x=\frac{1}{m}, n=m, m \in \mathbb{Z}/{0}$:
+\begin{align}
+	f(1) &= f(m\times\frac{1}{m}) \\
+	     &= mf(\frac{1}{m}) + \frac{m^2-m}{2m^2} \\
+	     &= 1 \\
+	f(\frac{1}{m}) &= \frac{1}{m}(1- \frac{1}{2}(1-\frac{1}{m})) \\
+	               &= \frac{1}{2}(\frac{1}{m})(\frac{1}{m} + 1)
+\end{align}
+
+We can now generalize to all rational numbers:
+\begin{align}
+	f(\frac{n}{m}) &= nf(\frac{1}{m}) + \frac{n^2-n}{2m^2} \\
+	& = \frac{n}{2}(\frac{1}{m})(\frac{1}{m} + 1) + \frac{1}{2}((\frac{n}{m})^2-\frac{n}{m^2}) \\
+	& = \frac{1}{2}(\frac{n}{m})(\frac{n}{m} + 1)
+\end{align}
+
+But does this mean that $f(x) = \frac{1}{2}(x)(x+1)$ for all $x\in \mathbb{R}$? Bizarrely enough,
+the answer is no. However, if $f(x)$ is defined to be continuous, then this is true. To see this,
+let's consider an arbitrary irrational number $x$. We can define a sequence of rational numbers 
+$\{a_n\}$ with $10^nx > 10^n a_n > 10^n x - 1$ for all $n$ by defining 
+$a_n = \frac{1}{10^n}\lfloor 10^nx \rfloor$. This set of rational numbers will converge to $x$, and the
+set $\{f(a_n)\} = \{\frac{1}{2}(a_n)(a_n+1)\}$ also converges to $f(x) = \frac{1}{2}(a_n)(a_n+1)$
+if $f$ is continuous.
+
+However, if $f$ is not continuous, we can construct infinitely many $f(x)$ which satisfy the
+conditions. For any irrational number, we can arbitrarily define $f(x) = c$, and then
+\[ f(qx) &= qc + \frac{1}{2}(q)(q-1)(x^2) \]
+
+And since $qx$ will never be a rational number, this is linearly independent to the rational
+numbers we already have above.
+
+\end{document}

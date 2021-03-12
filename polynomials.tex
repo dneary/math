@@ -1,0 +1,35 @@
+
+Polynomials:
+
+The starting is the fundamental theorem of algebra. Polynomials of degree $n$ have at most $n$ real roots, and exactly $n$ complex roots.
+The next most important formulas are Vièta’s formulas for polynomial roots. In cubics (where we see the formulas used most often in math problems) it’s equivalent to :
+Given the polynomial $f(x) = ax^3 + bx^2 + cx + d$, with roots $\alpha, \beta, \gamma \in \mathbb{C}$:
+$\displaystyle \alpha + \beta + \gamma = -\frac{b}{a}$
+$\displaystyle \alpha\beta + \beta\gamma + \gamma\alpha = \frac{c}{a}$
+$\displaystyle \alpha \beta \gamma = -\frac{d}{a}$
+This follows directly from the equivalence $f(x) = a(x-\alpha)(x-\beta)(x-\gamma)$. In higher orders, you most commonly see the coefficient of $x^{n-1}$ equals the negative of the sum of the roots, and the constant is $(-1)^n$ times the product of the roots.
+Next are a few useful polynomial theorems you can use like the rational root theorem, Descarte’s rule of signs, the complex conjugate root theorem (the non-real roots of polynomials with real coefficients always come in conjugate pairs), the remainder theorem.
+It’s really useful to know your binomial theorem, and expansions of common expressions. For example, you should know that $(x+y+z)^2 = x^2+y^2+z^2+2(xy+yz+zx)$. Then you should be able to spot at a glance common factorizations like $x^n-y^n$ for odd $n$, and a variety of commonly used factorizations, including:
+$x^2-y^2 = (x-y)(x+y)$
+$x^3-y^3 = (x-y)(x^2+xy+y^y)$
+$x^4+4y^4 = (x^2-2xy+2y^2)(x^2+2xy+2y^2)$
+$x^3+y^3+z^3-3xyz = (x+y+y)(x^2+y^2+z^2-(xy+yz+zx))$
+
+There are some techniques you will use over and over like partial fractions.
+
+And then as you get further in, there’s definite benefit in understanding factorization of polynomials over finite fields (an extension of modular arithmetic to polynomials) and applications of Euclidean division. But likely the theorems I mentioned earlier are more than enough to get started.
+
+
+An example problem from an IMO qualifier:
+Prove that there does not exist a polynomial $f(x)$ with integer coeﬃcients for which $f(2008) = 0$ and $f(2010) = 1867$
+In this case, integer coefficients means that we can maybe use the rational root theorem, or maybe use modular arithmetic. Let’s try the latter first.
+$f(x) = a_0 + a_1x + \cdots + a_nx^n$
+$f(2008) = 0 \implies a_0 + 2010a_1 + \cdots + (2010)^n a_n = 0$
+Then: 
+$f(2010) - f(2008) = 1867$
+$= a_1(2010 -2008) + a_2(2010^2-2008^2) + \cdots + a_n(2010^n-2008^n)$
+$= (2010-2008) N = 2N$
+for some integer N (since each term is divisible by $2010-2008$
+But $2N \neq 1867$ for any integer $N$
+The main thing we needed for this is to notice that $x^n-y^n$ is divisible by $x-y$ for all $n$
+
