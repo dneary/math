@@ -1,0 +1,59 @@
+\documentclass[10pt,oneside,landscape]{article}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsthm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{problem}{Problem}
+
+\begin{document}
+
+\title{Approximating $\pi$ with an Infinite Series}
+\author{Dave Neary}
+
+\maketitle
+
+\section{Introduction}
+
+We can sum the infinite series:
+\[f(t) = 1-t^2+t^4-t^6+\cdots = \frac{1}{1+t^2} \]
+
+Integrating across from 0 to $x$:
+
+\[\int_{t=0}^x f(t) dt = \tan^{-1}(x) = x-\frac{x^3}{3}+\frac{x^5}{5} - \cdots\]
+
+And setting $x=1$ (which converges in the integral, but not in the original function):
+$\tan^{-1}(1) = \frac{\pi}{4} = 1-\frac{1}{3}+\frac{1}{5}-\frac{1}{5} - \cdots$
+
+\bigskip
+
+This is a nice formula for $\pi$, but is slow to converge. You can use the tan sum formula to
+find faster converging solutions:
+\[\tan(A+B) = \frac{\tan A + \tan B}{1-\tan A \tan B}\]
+
+Let $A=\tan^{-1} \frac{1}{2}, B=\tan^{-1} \frac{1}{3}$ Then apply the tangent sum forula, and take
+inverse tangents on both side:
+
+\begin{align*}
+\tan(A+B) &= \frac{\frac{1}{2}+\frac{1}{3}}{1-\frac{1}{2}\cdot\frac{1}{3}} = 1 \\
+\tan^{-1}(1) & = \frac{\pi}{4} = \tan^{-1}\frac{1}{2} + \tan^{-1}\frac{1}{3}
+\end{align*}
+
+\bigskip
+
+Then:
+\[\displaystyle \frac{\pi}{4} = \sum_{i=1}^{\infty} \frac{(-1)^{i+1}}{2i-1} \left( \frac{1}{2^{2i-1}} + \frac{1}{3^{2i-1}}\right)\]
+
+which converges many times faster. You can do this for any other numbers you can find for
+$A+B=1-AB$ which gives $(A+1)(B+1) = 2$ such as $\frac{1}{4}$ and $\frac{3}{5}$.
+Another example, more complicated to find, is:
+
+\[\frac{\pi}{4} = 4\tan^{-1}\left(\frac{1}{5}\right) - \tan^{-1}\left(\frac{1}{239}\right)\]
+
+which converges to 10 digits of $\pi$ when you take the first 4 terms of the expansion of
+$\tan^{-1} \frac{1}{5}$ and the first two terms of $\tan^{-1} \frac{1}{239}$.
+
+\end{document}
+
