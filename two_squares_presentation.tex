@@ -171,13 +171,17 @@
 \begin{frame}
 	\frametitle{Euclidean Domains}
 
-	By defining an appropriate "norm" function $N(x)$, we can also use the Euclidean 
-	division algorithm to find the GCD of elements of $\mathbb{Z}[i]$!
+	By defining an appropriate "norm" function $N(x):\mathbb{Z}[i]\rightarrow\mathbb{N}$,
+	we can also use the Euclidean division algorithm to find the GCD of elements of
+	$\mathbb{Z}[i]$!
 	\begin{itemize}
 		\item Define the norm $N(a+ib) = a^2 + b^2$
+		\item The norm function is multiplicative: $N(xy) = N(x)N(y)$
 		\item For all $x,y \in \mathbb{Z}[i]$, there exist $q,r \in \mathbb{Z}[i]$
 			such that $x = q\times y + r$, with $N(r) < N(y)$
 	\end{itemize}
+
+	Since the norm function is multiplicative, we know that if $x = qy$, then $N(y)|N(x)$.
 
 	We have a way to determine prime numbers for $\mathbb{Z}[i]$
 	that will be different from the primes we know in $\mathbb{N}$, and to express any
