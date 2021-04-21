@@ -1,0 +1,230 @@
+\documentclass{article}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+
+\newtheorem{theorem}{Theorem}[section]
+\renewcommand{\implies}{\Rightarrow}
+\begin{document}
+
+\title{Rational approximations of real numbers}
+
+\section{Introduction}
+
+Our goal is to prove that we can approximate any positive real number arbitrarily closely
+with $\frac{2^a}{3^b}$ with positive integers $a,b$. This surprising result will bring us
+into the world of infinite and infinitessimal analysis.
+
+This will be a quick tour around some of the wonders of infinity in analysis, and how to
+generate arbitrarily accurate rational approximations for any real number.
+
+\section{Continued fractions}
+
+One way of generating arbitrarily close approximations of irrational numbers is by taking
+the partial terms (called "convergents") of the continued fraction expression. Generating
+a continued fraction for $x$ involves taking the floor of $x$, subtracting it, taking the
+floor of the inverse, and repeating the operation to infinity.
+
+An example will help to illustrate. The continued fraction for $\sqrt{2} = 1.414\cdots$ has
+a leading term of 1 (the whole number part of $\sqrt{2}$) and a remainder of $\sqrt{2}-1$.
+Inverting the remainder, we find that it is $\frac{1}{\sqrt{2}-1} = \sqrt{2}+1$ - giving
+our next term to be $\lfloor 1+\sqrt{2}\rfloor = 2$, and a remainder of $\sqrt{2}-1$.
+We can repeat this process ad infinitem to generate the continued fraction 
+$\left[1;2,2,2,\cdots\right]$.
+
+\textbf{Exercise:} Prove that the continued fraction of $\sqrt{n^2+1}$ in general is 
+$\left[n;2n,2n,2n,\cdots\right]$.
+
+We can now generate a convergent set of rational approximations to $\sqrt{2}$ which are
+guaranteed to be the best possible rational approximations with a given denominator (or
+smaller) by taking the partial sums:
+\[ 1+\frac{1}{2} = \frac{3}{2}\]
+\[ 1+\frac{1}{2+\frac{1}{2}} = 1+\frac{2}{5} = \frac{7}{5} \]
+\[ 1+\frac{1}{2+\frac{1}{2+\frac{1}{2}}} = 1+\frac{5}{12} = \frac{17}{12} \]
+\[ 1+\frac{1}{2+\frac{1}{2+\frac{1}{2 + \frac{1}{2}}}} = 1+\frac{12}{29} = \frac{41}{29} \]
+
+In general, if the $n$th approximation is $\frac{p}{q}$, the $(n+1)$th approximation is 
+$\frac{p+2q}{p+q}$.
+
+\textbf{Exercise:} Prove that this sequence converges to $\sqrt{2}$. How does it converge?
+Is it monotonic decreasing, or does it oscillate around the eventual limit? Does this
+converge to $\sqrt{2}$ if we start with a different starting point for $\frac{p}{q}$?
+
+Larger numbers in a continued fraction representation imply faster convergence, smaller
+numbers mean slower convergence. The slowest converging continued fraction is thus:
+\[\left[1;1,1,1,\cdots\right] = 1+\frac{1}{\left[1;1,1,1,\cdots\right]}\]
+
+We can evaluate this exactly using the quadratic equation:
+\[ x = 1+\frac{1}{x} \]
+or $x = \varphi = \frac{1+\sqrt{5}}{2}$, the golden ratio.
+
+The start continued fraction for $\pi$ is
+$\left[3;7,15,1,292,1,1,1,2,1,3,1,14,2,1,1,2,2,2,2,\cdots\right]$ and its first few
+convergents are the well known approximations of $\pi: 3, \frac{22}{7}, \frac{333}{106}, \frac{355}{113}$.
+Since the next term is 292, we know that this last approximating is extremely close to the actual
+value of $\pi$.
+
+\section{Finding general rational approximations}
+
+When given a number $x$, one naive strategy for finding a rational approximation is to multiply
+it by a positive integer $n$, take the whole number closest to the result, and call $\frac{m}{n}$ our
+estimate. This approach works, and will converge to $x$ over time, but it is far from efficient. For
+example, $\frac{22}{7}$ is a much better estimate of $\pi$ than $\frac{31}{10}$ - by increasing the
+denominator to 10, we have made our estimate a lot worse.
+
+We can do better by using an approach described by Dirichlet. Dirichlet's approximation theorem
+says that if $x$ is irrational, that we can always find $a,b \in \mathbb{Z}$ such that
+$|ax-b|<\frac{1}{n}$ for any $n\in \mathbb{N}$. To prove this, consider $\{ax\} = ax - 
+\lfloor ax \rfloor$ for all $a < n$. $0<\{ax\}<1$ for all $a$, by definition. If we partition the
+interval $[0,1)$ into $n-1$ buckets $[0,\frac{1}{n}) \cup [\frac{1}{n},\frac{2}{n}) \cup \cdots
+\cup [\frac{n-1}{n}, 1)$, we are guaranteed that of the $n+1$ values $\{a_i\}_{i=0}^n$, at
+least 2 will land in the same bucket, by the Pigeonhole principle. If these two values are $a_i, a_j$,
+then $a_i = \{ix\} = ix - \lfloor ix \rfloor, a_j = \{jx\} = jx - \lfloor jx \rfloor$, and
+
+\[ \frac{1}{n} > |\{ix\}-\{jx\}| = | (ix-\lfloor ix \rfloor) - (jx - \lfloor jx \rfloor) | \]
+\[ \frac{1}{n} > | (i-j)x  + b | = | ax+b | \]
+
+for an integer $b = |\lfloor ix \rfloor - \lfloor jx \rfloor|$. What's more, regardless of how close
+the estimate is for $n$, we can find a better estimate by choosing $n > |\frac{1}{ax-b}|$, when
+$\frac{1}{n}$ is smaller than the smallest fractional difference for $a<n$.
+
+This is a bit abstract, so let's work an example through to see how this works in practice. Let's try
+to approximate $\pi$ using this method with increasing values of $a$. With $a=10$, for example:
+
+\begin{center}
+	\begin{tabular}{|c|c|}
+		\hline
+		$i$ & $\{i\pi\}$ \\
+		\hline
+		$0$ & $0$ \\
+		$1$ & $0.14159$ \\
+		$2$ & $0.28318$ \\
+		$3$ & $0.42277$ \\
+		$4$ & $0.56637$ \\
+		$5$ & $0.70796$ \\
+		$6$ & $0.84955$ \\
+		$7$ & $0.99114$ \\
+		$8$ & $0.13274$ \\
+		$9$ & $0.27433$ \\
+		$10$ & $0.41592$ \\
+		\hline
+	\end{tabular}
+\end{center}
+
+Now, since we have 10 buckets, representing the $\frac{1}{10}$ths, we are guaranteed that at
+least two of these will be in the same bucket (in fact, we see that many pairs are in the same
+bucket). Looking down the list at the $\frac{1}{10}$ths digit, we can easily see that the
+entries corresponding to $i=1, i=8$, $i=2, i=9$, and $i=3, i=10$ all land in the same buckets.
+In other words:
+\[ \frac{1}{10}> |\{8\pi\}-\{1\pi\}| = | 8\pi - 25 - (1\pi - 3)| = |7\pi -22| \]
+which gives us the well-known estimate for $\pi$ of $\pi \approx \frac{22}{7}$. 
+
+Given a good estimate $\frac{a}{b}$ for $x$, we can guarantee to find a better estimate by 
+considering $|bx-a| = y$. Again, considering $\pi$: $|7\pi - 22| \approx 0.00885 > 
+\frac{1}{113}$, so we are guaranteed to be able to find a more accurate rational estimate by setting
+$a \geq 113$.
+
+This iterative nature of always being able to find a closer approximation by choosing a sufficiently
+large value for $n$, is what enables arbitrary approximation of any rational number.
+
+\section{A Pell equation approach}
+
+\textbf{Question:} Source: The Riddler from FiveThirtyEight: 
+https://fivethirtyeight.com/features/can-you-find-an-extra-perfect-square/
+
+For some perfect squares, when you remove the last digit, the result is also a perfect square. The
+first few squares for which this happens are 16, 49, 169, 256, and 361. Can you find the next 3
+numbers for which this is true? How many such numbers are there?
+
+For extra credit, note that $(169,16,1)$ is a triple with this property. Are
+there other similar triples?
+
+If we write the larger number as $a^2$, and the smaller number as $b^2$, we get that:
+\[ 0 \leq a^2 - 10b^2 < 10 \]
+
+And by looking at $n^2 \pmod{10}$, we can see that $a^2 - 10b^2 \in \{0,1,4,5,6,9\}$.
+In addition, if $a^2-10b^2 = 5$ that means that $a=10k+5, a^2 = 100(k^2+k) + 25$, so the last
+digit of $b^2$ would have to be 2, which is not an option. And if $a^2-10b^2 = 0$, that means that:
+$\frac{a^2}{b^2} = 10 \implies \frac{a}{b} = \sqrt{10}$ - but since $\sqrt{n}$ is irrational unless
+$n$ is a perfect square, that is not a possibility either. Thus, we need to find the solutions to
+$a^2 - 10b^2 \in \{1,4,6,9\}$.
+
+Let's look first at $a^2-10b^2 = 1$.  We can factor this as a difference of two squares:
+\[ a^2 - 10b^2 = (a-\sqrt{10}b)(a+\sqrt{10}b) = 1 \]
+
+Additionally, we can show that if $a,b \in \mathbb{Z}$, then:
+\[ (a-\sqrt{10}b)^n = A - \sqrt{10}B \]
+\[ (a+\sqrt{10}b)^n = A + \sqrt{10}B \]
+for some $A,B \in \mathbb{Z}$ using the binomial expansion. For $n=2$, we get $A=a^2+10b^2, B=2ab$.
+
+From the question, we already have the smallest solution to this equation: $19^2 - 10(6^2) = 1$ - 
+and from this we can generate as many solutions as we want by using different values of $n$. Indeed:
+\[A = 19^2 + 10\cdot 6^2 = 361 + 360 = 721,  B = 2 \cdot 19 \cdot 6 = 228 \]
+\[ 721^2 = 51984, 228^2 = 51984, 721^2 - 10\cdot 228^2 = 1 \]
+
+By defining an appropriate norm on numbers in this set (called formally $\mathbb{Z}[\sqrt{10}]$), 
+we can also find all solutions satisfying the question. Define the norm as:
+\[ N(a+\sqrt{10}b) = (a+\sqrt{10}b)(a-\sqrt{10}b) = a^2-10b^2 \]
+Then:
+\begin{align*}
+	N((a+\sqrt{10}b)(c+\sqrt{10}d)) &= N((ac+10bd) + \sqrt{10}(bc + ad)) \\
+	&= (ac+10bd)^2-10(bc+ad)^2 \\
+	&= a^2c^2 - 10b^2c^2 - 10a^2b^2 + 100b^2d^2 \\
+	N(a+\sqrt{10}b)N(c+\sqrt{10}d) &= (a^2-10b^2)(c^2-10d^2) \\
+	&= a^2c^2 -10b^2c^2 -10 a^2d^2 +100b^2d^2 \\
+	&= N((a+\sqrt{10}b)(c+\sqrt{10}d))
+\end{align*}
+
+So for $\mathbb{Z}[\sqrt{10}]$, if we have a number with a norm $N(a+\sqrt{10}b) = 4$ then we can
+generate infinitely many others with the same norm by multiplying by a number that has a norm of 1
+(that is, by any number of the form $(19+6\sqrt{10})^n$). Since $N(2 + 0\sqrt{10}) = 4$, any number
+of the form $2(19+6\sqrt{10})^n$ will have $a^2-10b^2 = 4$.
+
+For $a^2 - 10b^2 = 6$, we can similarly generate solutions of the form $(4+\sqrt{10})(19+6\sqrt{10})^n$
+and $(16+5\sqrt{10})(19+6\sqrt{10})^n$. And finally, for $a^2 - 10b^2 = 9$, there are several numbers with
+$N(a+\sqrt{10}b) = 9$: $3, 7+2\sqrt{10}, 13 + 4\sqrt{10}$, and so we can generate solutions for all of
+$3(19 + 6\sqrt{10})^n, (7 + 2\sqrt{10})(19 + 6\sqrt{10})^n, (13 + 4\sqrt{10})(19 + 6\sqrt{10})^n$.
+
+It's worth noting that for all solutions of the form $a^2-10b^2 = 1$:
+\[ \frac{a}{b} = \sqrt{10 + \frac{1}{b^2}} \approx \sqrt{10} \]
+
+so the solutions to the question above are also increasingly accurate rational approximations of 
+$\sqrt{10}$. As we saw in the section on continued fractions, $\sqrt{10} = [3;6,6,6,\cdots]$ - so we
+also can create solutions with convergents of the continued fraction above (taken after an
+even number of terms, because it oscillates around $\sqrt{10}$). The first convergent,
+$\frac{19}{6}$, corresponds to the smallest solution of $a^2-10b^2=1$. The next convergents are
+\[ 3 + \frac{1}{6 + \frac{1}{6 + \frac{1}{6}}} = \frac{721}{228} \]
+\[ 3 + \frac{1}{6 + \frac{1}{6 + \frac{1}{6 + \frac{1}{6 + \frac{1}{6}}}}} = \frac{27379}{8658} \]
+which correspond to the next two solutions to $a^2-10b^2=1$.
+
+For the extra credit: if $0<a^2-10b^2 <10, 0<10b^2 - (10c)^2 \leq 90$, then adding these,
+
+\[0 < a^2 - (10c)^2 = (a-10c)(a+10c) < 100 \]
+
+and $a > 10c$, giving us:
+
+\[ 20c < a+10c < (a+10c)(a-10c) = a^2 - (10c)^2 < 100 \]
+Which means $c < 5$, and $a^2$ must begin with $1,4,9,16$. The only option for $b$ with this
+constraint is $169$, and there are no other solutions.
+
+\section{Approximating any positive real number with $\frac{2^a}{3^b}, a,b \in \mathbb{Z}^+$}
+
+Given $\delta>0, x \in \mathbb{R}^+$, we can find $a,b \in \mathbb{Z}^+$ such that:
+\[ \left|x - \frac{2^a}{3^b} \right| < \delta \]
+
+Consider:
+\begin{align*}
+	y &= \frac{2^a}{3^b} \\
+	\ln(y) &= a\ln(2) - b\ln(3) \\
+	\log_3(y) &= a\log_3(2) - b
+\end{align*}
+
+Since $\log_3(2)$ is irrational, we can use Dirichelet's approximation theorem to find
+$a,b \in \mathbb{Z}$ such that:
+\[ \left| a\log_3(2) - b \right| < \frac{1}{n} \]
+for any $n \in \mathbb{N}$.
+
+
+\end{document}
