@@ -209,11 +209,23 @@
 \end{frame}
 
 \begin{frame}
+	\frametitle{Fermat's Little Theorem}
+
+	Fermat's Little Theorem states that for a prime $p$, and any number $a$ coprime with $p$ 
+	(that is, $\gcd(a,p) = 1$):
+	\[ a^{p-1} \equiv 1 \pmod{p} \]
+
+	In fact, we can go further, and say that for every $a \in \mathbb{Z}/p\mathbb{Z}$, there exists
+	an exponent $t$ such that $a^{e} \equiv 1 \pmod{p}$, and $e | (p-1)$. 
+
+\end{frame}
+
+\begin{frame}
 	\frametitle{Quadratic residues}
 
 	In modular arithmetic, a quadratic residue is a number that has a square root
 	$\pmod{p}$. For example, looking at the numbers $\pmod{7}$, we see that only 0, 1, 2, 
-	and 4 have square roots in $\mathbb{Z}/p\mathbb{Z}$, the numbers $\pmod{7}$:
+	and 4 have square roots in $\mathbb{Z}/p\mathbb{Z}$, the numbers $\pmod{7}$.
        \begin{table}
 \begin{tabular}{| l | c |}
         \hline
@@ -231,20 +243,35 @@
 	       \caption*{Quadratic residues $\pmod{7}$}
 \end{table}
 
+
 \end{frame}
 
 \begin{frame}
-	\frametitle{Dedekind's proof}
+	\frametitle{Dedekind's proof (1)}
 
 	From Fermat's Little Theorem, we know that $a^{p-1} \equiv 1 \pmod{p}$ for all
 	$a\neq 0 \pmod{p}$. We also can show that $(-1)^{\frac{p-1}{2}} = 1$ since 
-	$\frac{p-1}{2} = 2k$. Therefore, for a quadratic non-residue $a$,
-	$(a^{\frac{p-1}{4}})^2 = -1 \pmod{p}$.
+	$p = 4k-1, (-1)^{\frac{p-1}{2}} = (-1)^{2k} \equiv 1 \pmod{p}$.
 
-	That means, we can find $a \in \mathbb{Z}/p\mathbb{Z}$ such that $p | a^2 + 1$, and
-	factoring it over $\mathbb{Z}[i]$ we get:
-	\[a^2 + 1 = (a+i)(a-i) \]
-	But since $N(a+i)<N(p)$, $p$ does not divide either of these factors - which means
+	For a quadratic non-residue $a$ of $p$, the smallest power $e$ such that $a^{e} \equiv 1 \pmod{p}$
+	is $e = p-1$.
+
+	$1$ has two square roots $\pmod{p}$: itself and $-1$. Since $a^{\frac{p-1}{2}} \not \equiv 1
+	\pmod{p}$, $a^{\frac{p-1}{2}} \equiv -1 \pmod{p}$.
+
+	Therefore, for a quadratic non-residue $a$, $(a^{\frac{p-1}{4}})^2 = -1 \pmod{p}$.
+
+\end{frame}
+\begin{frame}
+	\frametitle{Dedekind's proof (2)}
+
+	If we can find a quadratic non-residue $a$, then we can set $b \equiv a^{\frac{p-1}{4}} \pmod{p}$
+	and we are guaranteed that $b^2 \equiv -1 \pmod{p}$, or $p | b^2+1$.
+
+	Factoring $b^2+1$ over $\mathbb{Z}[i]$ we get:
+	\[b^2 + 1 = (b+i)(b-i) \]
+	
+	But since $b<p$, $N(b+i)<N(p)$, so $p$ does not divide either of these factors - which means
 	that $p$ must be divisible by some other Gaussian prime factors $(n+im)(n-im) = p$.
 \end{frame}
 
