@@ -47,7 +47,7 @@
 	
 "On the subject of right triangles, here are my findings:
 	\begin{itemize}
-	\item Ever prime number that is one more than a multiple of four can be written in exactly
+	\item Every prime number that is one more than a multiple of four can be written in exactly
 		one way as the sum of two squares, and in one way as the hypotenuse of a right triangle
 	\item The same number and its square can be written in exactly one way as the sum of two squares."
 	\end{itemize}
@@ -148,9 +148,9 @@
 	$\mathbb{Z}[i]$ is closed under multiplication and addition, and has additive and
 	multiplicative identities.
 	\begin{itemize}
-		\item For $x,y \in \mathbb{Z}[i], x \times y, x + y \in \mathbb{Z}[i]$
+		\item For $x,y \in \mathbb{Z}[i], x \cdot y, x + y \in \mathbb{Z}[i]$
 		\item There exist elements $0, 1 \in \mathbb{Z}[i]$ such that, for all
-			$x \in \mathbb{Z}[i], 0+x = x, 1 \times x = x$
+			$x \in \mathbb{Z}[i], 0+x = x, 1 \cdot x = x$
 	\end{itemize}
 \end{frame}
 
@@ -178,7 +178,7 @@
 		\item Define the norm $N(a+ib) = a^2 + b^2$
 		\item The norm function is multiplicative: $N(xy) = N(x)N(y)$
 		\item For all $x,y \in \mathbb{Z}[i]$, there exist $q,r \in \mathbb{Z}[i]$
-			such that $x = q\times y + r$, with $N(r) < N(y)$
+			such that $x = q \cdot y + r$, with $N(r) < N(y)$
 	\end{itemize}
 
 	Since the norm function is multiplicative, we know that if $x = qy$, then $N(y)|N(x)$.
@@ -207,7 +207,7 @@
 	\[ \frac{11 + 7i}{3i} = \frac{7}{3} -\frac{11i}{3} \]
 	And we round to $2-4i$:
 	 \[ 11 + 7i = (2-4i)(3i) + i \]
-	And since $i$ is a unit, the greatest common denominator is 1.
+	And since $i$ is a unit (that is, a number with a norm of 1), the greatest common divisor is 1.
 }
 
 \end{frame}
@@ -220,7 +220,7 @@
 	\[ a^{p-1} \equiv 1 \pmod{p} \]
 
 	In fact, we can go further, and say that for every $a \in \mathbb{Z}/p\mathbb{Z}$, there exists
-	an exponent $t$ such that $a^{e} \equiv 1 \pmod{p}$, and $e | (p-1)$. 
+	an exponent $e$ such that $a^{e} \equiv 1 \pmod{p}$, and $e | (p-1)$. 
 
 \end{frame}
 
