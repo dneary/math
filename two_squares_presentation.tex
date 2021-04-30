@@ -80,7 +80,7 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Can any primes of the form $4k-1$ be a sum of squares?}
+	\frametitle{Can any primes of the form $4k+3$ be a sum of squares?}
 
 	For all integers $x,y$:
 	\[ x^2, y^2 \equiv 0 \text{ or } 1 \pmod{4} \]
@@ -141,17 +141,31 @@
 \end{frame}
 
 \begin{frame}
+	\frametitle{Prime and composite numbers}
+
+	A reminder of what it means for a whole number to be prime or composite:
+	\begin{itemize}
+		\item If $p$ is prime, then it has only two positive integer factors, itself and 1.
+		\item If a prime $p$ divides a composite number $n = ab$, then $p$ divides $a$, or $p$ divides $b$
+		\item If a number $q$ divides a number $ab$ with $q>a, q>b$, then $q$ must be composite.
+			For example, $12 | 72 = 8 \cdot 9$, and $12>8$, $12>9$, so 12 must be composite.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
 	\frametitle{Gaussian Integers}
 	The Gaussian integers $\mathbb{Z}[i]$ is the set 
 	$\{a+ib:a, b \in \mathbb{Z}, i^2 = -1 \}$
 
-	$\mathbb{Z}[i]$ is closed under multiplication and addition, and has additive and
-	multiplicative identities.
 	\begin{itemize}
-		\item For $x,y \in \mathbb{Z}[i], x \cdot y, x + y \in \mathbb{Z}[i]$
-		\item There exist elements $0, 1 \in \mathbb{Z}[i]$ such that, for all
-			$x \in \mathbb{Z}[i], 0+x = x, 1 \cdot x = x$
+		\item $\mathbb{Z}[i]$ is closed under addition: $a+ib + c+id = (a+c) + i(b+d)$
+		\item It is also closed under multiplication:
+			$(a+ib)(c+id) = ac + ibc + iad + i^2bd = (ac-bd) + i(ad+bc)$
 	\end{itemize}
+
+	In the same way as we have unique factorization in $\mathbb{N}$, we have the same thing in
+	$\mathbb{Z}[i]$! In particular, the same rules for determining whether a number is prime or
+	composite apply to the Gaussian integers.
 \end{frame}
 
 \begin{frame}
@@ -159,7 +173,7 @@
 
 	An interesting characteristic of the Gaussian integers is that we can factor some
 	expressions that do not have a factorization over the real numbers. For example:
-	\[a^2 + b^2 = (a+ib)(a-ib) \]
+	\[a^2 + b^2 = a^2 - i^2b^2 = (a+ib)(a-ib) \]
 
 	In this way, we can factor numbers that are prime in the natural numbers!
 	\begin{align*}
@@ -169,48 +183,44 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Euclidean Domains}
+	\frametitle{Determining size of $a+ib$}
 
-	By defining an appropriate "norm" function $N(x):\mathbb{Z}[i]\rightarrow\mathbb{N}$,
-	we can also use the Euclidean division algorithm to find the GCD of elements of
-	$\mathbb{Z}[i]$!
+	Earlier, I said "if a number $q$ divides a number $ab$ with $q>a, q>b$, then $q$ must be composite".
+	But how can we tell if one Gaussian integer is bigger than another?
+
+	We define a "norm" function $N(x):\mathbb{Z}[i]\rightarrow\mathbb{N}$:
 	\begin{itemize}
-		\item Define the norm $N(a+ib) = a^2 + b^2$
+		\item $N(a+ib) = a^2 + b^2$, the square of the length from the origin to the point.
 		\item The norm function is multiplicative: $N(xy) = N(x)N(y)$
-		\item For all $x,y \in \mathbb{Z}[i]$, there exist $q,r \in \mathbb{Z}[i]$
-			such that $x = q \cdot y + r$, with $N(r) < N(y)$
 	\end{itemize}
 
 	Since the norm function is multiplicative, we know that if $x = qy$, then $N(y)|N(x)$.
-
-	We have a way to determine prime numbers for $\mathbb{Z}[i]$
-	that will be different from the primes we know in $\mathbb{N}$, and to express any
-	Gaussian integer as a unique product of primes and units.
+	Also, if $x | ab$ and $N(x) > N(a), N(x) > N(b)$, hten $x$ must be composite in $\mathbb{Z}[i]$.
 \end{frame}
 
-\begin{frame}
-	\frametitle{Euclidean division on $\mathbb{Z}[i]$}
-
-	\only<1>{
-	Let's find the GCD of $11+7i$ and $18-i$ to see how it works.
-	\begin{align*}
-		N(11+7i) &= 11^2 + 7^2 = 170\\
-		N(18-i) &= 18^2 + 1^2 = 325 \\
-		\frac{18 - i}{11+7i} &= \frac{(18-i)(11-7i)}{(11+7i)(11-7i)}\\
-		&= \frac{205 - 137i}{170}
-	\end{align*}
-	We can round this to the nearest Gaussian integer $1-i$ to get:
-	\[ 18-i = (1-i)(11+7i) + 3i \]
-}
-	\only<2>{
-	Now we repeat the step to get:
-	\[ \frac{11 + 7i}{3i} = \frac{7}{3} -\frac{11i}{3} \]
-	And we round to $2-4i$:
-	 \[ 11 + 7i = (2-4i)(3i) + i \]
-	And since $i$ is a unit (that is, a number with a norm of 1), the greatest common divisor is 1.
-}
-
-\end{frame}
+%% \begin{frame}
+%	\frametitle{Euclidean division on $\mathbb{Z}[i]$}
+%
+%	\only<1>{
+%	Let's find the GCD of $11+7i$ and $18-i$ to see how it works.
+%	\begin{align*}
+%		N(11+7i) &= 11^2 + 7^2 = 170\\
+%		N(18-i) &= 18^2 + 1^2 = 325 \\
+%		\frac{18 - i}{11+7i} &= \frac{(18-i)(11-7i)}{(11+7i)(11-7i)}\\
+%		&= \frac{205 - 137i}{170}
+%	\end{align*}
+%	We can round this to the nearest Gaussian integer $1-i$ to get:
+%	\[ 18-i = (1-i)(11+7i) + 3i \]
+%}
+%	\only<2>{
+%	Now we repeat the step to get:
+%	\[ \frac{11 + 7i}{3i} = \frac{7}{3} -\frac{11i}{3} \]
+%	And we round to $2-4i$:
+%	 \[ 11 + 7i = (2-4i)(3i) + i \]
+%	And since $i$ is a unit (that is, a number with a norm of 1), the greatest common divisor is 1.
+% }
+%
+%% \end{frame}
 
 \begin{frame}
 	\frametitle{Fermat's Little Theorem}
@@ -281,10 +291,10 @@
 
 	We have proved that there must be some factors of $p$ in $\mathbb{Z}[i]$, but we
 	have not found them. The tricky part is finding a square root of $-1$. To do this,
-	we look for a quadratic non-residue of $p$ (look up "Euler's criterion", out of
-	scope for this talk).
+	we look for a quadratic non-residue of $p$ - that is, a number $a$ where 
+	$a^{\frac{p-1}{2}} = -1$. 
 
-	Let's try $p=41 = 4(10)+1$ to see how it works.
+	Let's try an example with $p=41 = 4(10)+1$ to see how it works.
 	\[ 3^4 = 81 \equiv -1 \pmod{41} \]
 	\[ 3^{20} = (-1)^5 \equiv -1 \pmod{41} \]
 	So 3 is a non-residue of 41. Now to find a square root of -1, find $3^{10}$:
