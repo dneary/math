@@ -457,25 +457,25 @@
 	Where did this come from? What does it represent? How do we prove that it is an involution?
 \end{frame}
 
-\begin{frame}
-	\frametitle{The function is a partition}
-
-	First, let's show that the cases are all that there are. By definition,
-	$0<x,y,z \in \mathbb{N}$. If $x = y-z$ then:
-	\begin{align*}
-		x^2 + 4yz &= (y-z)^2 + 4yz \\
-		&= y^2+2yz+z^2 \\
-		&= (y+z)^2
-	\end{align*}
-
-	Similarly, if $x=2y$, then:
-	\begin{align*}
-		x^2 + 4yz &= (2y)^2 + 4yz \\
-		&= 4y(y+z)
-	\end{align*}
-	In both cases, $x^2+4yz$ is not a prime.
-
-\end{frame}
+%% \begin{frame}
+%	\frametitle{The function is a partition}
+%
+%	First, let's show that the cases are all that there are. By definition,
+%	$0<x,y,z \in \mathbb{N}$. If $x = y-z$ then:
+%	\begin{align*}
+%		x^2 + 4yz &= (y-z)^2 + 4yz \\
+%		&= y^2+2yz+z^2 \\
+%		&= (y+z)^2
+%	\end{align*}
+%
+%	Similarly, if $x=2y$, then:
+%	\begin{align*}
+%		x^2 + 4yz &= (2y)^2 + 4yz \\
+%		&= 4y(y+z)
+%	\end{align*}
+%	In both cases, $x^2+4yz$ is not a prime.
+%
+%% \end{frame}
 
 \begin{frame}
 	\frametitle{Let's talk about windmills}
@@ -488,10 +488,10 @@
 	\frametitle{A geometric interpretation}
 	\begin{figure}
 	\begin{center}
-             \includegraphics[width=0.8\textwidth]{windmill2.png}
+             \includegraphics[width=0.6\textwidth]{windmill_example_levels.jpg}
         \end{center}
-		\caption*{ $(5,2,8) \rightarrow (1,11,2)$}
-                \label{fig:windmill2}
+		\caption*{ $(3,1,2) \leftrightarrow (1,4,1)$}
+                \label{fig:windmill1}
 	\end{figure}
 
 	We interpret $x$ as the side of a square, with $y$ the base from the top left corner and
@@ -500,43 +500,87 @@
 
 \begin{frame}
 	\frametitle{A geometric interpretation}
+	\begin{columns}
+        \column{0.5 \textwidth}
+
 	The translations from one arrangement to another represent the different ways to wrap
 	rectangles around a square.
-	\begin{figure}
+
+	\vspace{1ex}
+
+	These are all of the transformations for $p=17$.
+
+	\column{0.5 \textwidth}
+
 	\begin{center}
-             \includegraphics[width=0.8\textwidth]{windmill1.png}
+             \includegraphics[width=0.9\textwidth]{Zagier_involution_levels.jpg}
         \end{center}
-	\caption*{ $(5,8,2) \rightarrow (9,2,1)$}
-                \label{fig:windmill1}
-	\end{figure}
+	
+	\end{columns}
 \end{frame}
 
-\begin{frame}
-	\frametitle{A geometric interpretation}
-
-	Each translation represents a different type of transformation which conserves the silhouette.
-	\begin{figure}
-	\begin{center}
-             \includegraphics[width=0.8\textwidth]{windmills.png}
-        \end{center}
-		\caption*{All the translations (and mappings) (thank you Mathologer)}
-                \label{fig:windmill_mathologer}
-	\end{figure}
-\end{frame}
+%% \begin{frame}
+%	\frametitle{A geometric interpretation}
+%
+%	Each translation represents a different type of transformation which conserves the silhouette.
+%	\begin{figure}
+%	\begin{center}
+%            \includegraphics[width=0.8\textwidth]{windmills.png}
+%       \end{center}
+%		\caption*{All the translations (and mappings) (thank you Mathologer)}
+%               \label{fig:windmill_mathologer}
+%	\end{figure}
+%% \end{frame}
 
 \begin{frame}
 	\frametitle{A unique fixed point}
 
+	\begin{columns}
+        \column{0.5 \textwidth}
+
 	In all of the shapes we have seen, there are two solutions with the same silhouette. Except one.
 
-	When $x=1, y=1, z=k$, we get a big "plus" sign. Since $y-z<x<2y$ in this case:
-	\[ (1,1,k) \rightarrow (2\times 1 - 1, 1, 1 - 1 + k) = (1,1,k) \]
-	is a fixed point for the mapping, and it is guaranteed to be the only one!
+		\vspace{1ex}
+		When $x=1, y=1, z=k$, we get a big "plus" sign. 
+	This point is a fixed point for the mapping, and it is guaranteed to be the only one!
+		\vspace{1ex}
 
-	Therefore, there will {\em always} be an odd number of solutions to $x^2+4yz = p$, and the
+	\column{0.5 \textwidth}
+
+	\begin{multline*} 
+		(x,y,z) \rightarrow \\ (2y-x, y, x-y+z)
+	\end{multline*}
+
+	\begin{center}
+             \includegraphics[width=0.6\textwidth]{Zagier_fixed_point.jpg}
+        \end{center}
+
+	\end{columns}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Fixed point in standard involution}
+
+	\begin{columns}
+        \column{0.5 \textwidth}
+
+	There will {\em always} be an odd number of solutions to $x^2+4yz = p$, and the
 	alternative involution on the same set $(x,y,z) \rightarrow (x,z,y)$ {\em also} has a fixed
 	point $y = z$.
 
+	\vspace{1ex}
+	In our example of $p=17$, we see that 
+	\[ p = 1^2 + 4(2)(2) = 1^2 + 4^2 \]
+	
+        \column{0.5 \textwidth}
+
+	\begin{center}
+             \includegraphics[width=0.8\textwidth]{basic_involution_levels.jpg}
+        \end{center}
+
+
+	\end{columns}
 \end{frame}
 
 \begin{frame}
