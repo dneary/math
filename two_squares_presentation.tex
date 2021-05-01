@@ -197,7 +197,7 @@
 	\end{itemize}
 
 	Since the norm function is multiplicative, we know that if $x = qy$, then $N(y)|N(x)$.
-	Also, if $x | ab$ and $N(x) > N(a), N(x) > N(b)$, hten $x$ must be composite in $\mathbb{Z}[i]$.
+	Also, if $x | ab$ and $N(x) > N(a), N(x) > N(b)$, then $x$ must be composite in $\mathbb{Z}[i]$.
 \end{frame}
 
 %% \begin{frame}
@@ -259,7 +259,6 @@
 	       \caption*{Powers of $a \pmod{7}$}
 \end{table}
 
-
 \end{frame}
 
 \begin{frame}
@@ -275,6 +274,7 @@
 	Therefore, for a quadratic non-residue $a$, $(a^{\frac{p-1}{4}})^2 = -1 \pmod{p}$.
 
 \end{frame}
+
 \begin{frame}
 	\frametitle{Dedekind's proof (2)}
 
@@ -286,6 +286,33 @@
 	
 	But since $b<p$, $N(b+i)<N(p)$, so $p$ does not divide either of these factors - which means
 	that $p$ must be divisible by some other Gaussian prime factors $(n+im)(n-im) = p$.
+\end{frame}
+
+\begin{frame}
+	\frametitle{Quadratic residues mod 41}
+
+	Let's look at $a,a^2, a^{20} \pmod{41}$.
+
+       \begin{table}
+\begin{tabular}{| c | c | c || c | c | c ||}
+        \hline
+	$a$ & $a^2$ & $a^{20}$ & $a$ & $a^2$ & $a^{20}$ \\
+	\hline
+	1  & 1  & 1  & 11 & 39 & 40 \\
+	2  & 4  & 1  & 12 & 21 & 40 \\
+	3  & 9  & 40 & 13 & 5  & 40 \\
+	4  & 16 & 1  & 14 & 32 & 40 \\
+	5  & 25 & 1  & 15 & 20 & 40 \\
+	6  & 36 & 40 & 16 & 10 & 1  \\
+	7  & 8  & 40 & 17 & 2 & 40 \\
+	8  & 23 & 1  & 18 & 37 & 1  \\
+	9  & 40 & 1  & 19 & 33 & 40 \\
+	10 & 18 & 1  & 20 & 31 & 1  \\
+	\hline
+\end{tabular}
+	       \caption*{Powers of $a \pmod{41}$}
+\end{table}
+
 \end{frame}
 
 \begin{frame}
