@@ -206,9 +206,10 @@ the equation of the circle, as expected. And since $t$ is rational, $x$ and $y$ 
 rational too.
 
 Is it possible, though, that we would somehow miss rational points in the circle by this method? 
-In fact, a line between a rational point $(x,y)$ and $(-1,0)$ is $\frac{y}{x+1}$ and since $(x,y)$ is
-a rational point, this is guaranteed to be rational too. So by enumerating all of the rational numbers
-for line slopes, we are guaranteed to hit all of the rational numbers.
+No - given any rational point $(x,y)$ on the perimeter of the circle, the slope of the line through
+$(x,y)$ and $(-1,0)$ is $\frac{y}{x+1}$, which is clearly rational. Since this would be a line with rational
+slope which goes through the point $(-1,0)$, we are guaranteed that by enumerating all of the rational
+numbers for line slopes, we are guaranteed to hit all of the rational points on the circle.
 
 If we take the slope to be $t = \frac{m}{n}$ for $m,n \in \mathbb{Z}$ we can multiply across the
 top and bottom by $n^2$ in the formulas for $x = \frac{1-t^2}{1+t^2}, y = \frac{2t}{1+t^2}$ to give
