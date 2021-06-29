@@ -262,5 +262,34 @@ A similar argument as before shows that this will find \textbf{all} rational poi
 ellipse, giving all integer solutions to the original problem (after dividing out any common factors
 of $a, b, c$).
 
+Interestingly, if we take a different rational point on the ellipse, we will get a different, but
+equally valid, formula for generating Eisenstein triples from rational numbers. The equation of
+a line through $(-1,-1)$, for example, is $y + 1 = t(x + 1)$. Isolating $y$, and substituting this
+into the equation of the ellipse, we get:
+\begin{equation*}
+        \begin{split}
+		x^2 - xy + y^2 - 1 & = x^2 - x(t(x+1)-1) + (t(x+1)-1)^2 - 1\\
+		& = x^2 -tx^2 -tx + x + t^2(x^2+2x+1)-2t(x+1)+1 \\
+		& = (1 - t + t^2)x^2 + (1 - 3t + 2t^2)x + (t^2-2t) \\
+		& = (x+1)((1 - t + t^2)x + (t^2-2t)) = 0
+	\end{split}
+\end{equation*}
+
+Giving the solutions $x = -1$ or $x = \frac{2t-t^2}{1-t+t^2}$.
+Substituting this back into the equation for the line, we get:
+\begin{equation*} 
+        \begin{split}
+		y &= t\left(\frac{2t-t^2}{1-t+t^2} + 1\right) + 1 \\
+		& = \frac{t^2 + t}{1-t+t^2} + 1 \\
+		& = \frac{2t - 1}{1 - t + t^2}
+	\end{split}
+\end{equation*}
+
+Replacing $t = \frac{m}{n}$, we get:
+\[ x = \frac{2mn - m^2}{m^2 - mn + n^2}, y = \frac{2mn - n^2}{m^2 - mn + n^2} \]
+Which gives an alternative form for triples of:
+\[ (a,b,c) = (2mn - m^2, 2mn - n^2, m^2 -mn + n^2) \]
+
+which, surprisingly perhaps, is exactly equivalent to the formula we found earlier.
 
 \end{document}
