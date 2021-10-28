@@ -1,0 +1,174 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\title{Generating functions and counting problems}
+\author{Dave Neary}
+\date{October 2021}
+
+\begin{document}
+
+\maketitle
+
+\section{Problem}
+
+How many solutions are there to the equation $n = a + b + c + d$, where $a \leq b \leq c \leq d$ and $a, b, c, d, n \in \mathbb{N}$?
+
+\section{Solution}
+
+The natural numbers $\mathbb{N} = \{1,2,3,\cdots\}$ — that is, the positive integers (not 0). It will be easier to work on this problem if our solutions are in the non-negative integer, including 0.
+
+We can rewrite the equation as:
+\[ x_1= a'+b'+c'+d' \]
+where: $x_1=x-4, a'=a-1, b'=b-1, c' = c-1, d' = d-1$, and the inequality for $a,b,c,d$ still holds for $a',b',c',d'$.
+
+We can go one step further, and remove this inequality, by focusing on the
+differences between the variables. Since we know that $a'\leq b'\leq c'\leq d'$ we can rewrite 
+$a_1 = a', b_1 = b' - a', c_1 = c' - b', d_1 = d' - c'$, and substituting these in to the equation, 
+we get:
+
+\[ x_1= 4a_1 + 3b_1 + 2c_1 + d_1 \]
+
+where each of $a_1,b_1,c_1,d_1 \geq 0$.
+
+There's a nice method of calculating this using generating functions. Consider:
+
+\[P(x) = (1+x^4+x^8+\cdots)(1+x^3+x^6+\cdots)(1+x^2+x^4+\cdots)(1+x+x^2+\cdots)\]
+
+This expands to an infinite series:
+\[P(x) = a_0 + a_1x + a_2x^2 + a_3x^3 + \cdots\]
+
+where each coefficient corresponds to the number of solutions for $x_1 = n, x = n+4$.
+
+To get the coefficient in the expansion for $x^{12}$ for example, we need to look at all
+the ways that you can combine multiples of 1,2,3, and 4 to add to 12. We can quickly find
+that the possible solutions are:
+
+\[(a_1,b_1,c_1,d_1) \in \{(3,0,0,0),(2,1,0,1),(2,0,2,0),(2,0,1,2),(2,0,0,4), \cdots\} \]
+
+where the solution $(2,1,0,1)$ for example corresponds to taking an $x^8$ term from
+$(1+x^4+x^8+\cdots)$, an $x^3$ from $(1+x^3+x^6+\cdots)$, a 1 from $(1+x^2+x^4+\cdots)$,
+and an $x$ from $(1+x+x^2+\cdots)$.
+
+Then we can sum these geometric series to get:
+
+\[P(x) = \frac{1}{(1-x^4)(1-x^3)(1-x^2)(1-x)} \]
+
+We can use partial fraction decomposition on this to get a closed form for $a_n$.
+
+Our denominator can be factored:
+\begin{align*}
+ P(x) &= \frac{1}{(1-x^4)(1-x^3)(1-x^2)(1-x)} \\
+      &= \frac{1}{(1-x)^4(1+x)^2(1+x^2)(1+x+x^2)} \\
+      &= \frac{1}{(1-x)^4(1+x)^2(1+ix)(1-ix)(1-\omega x)(1 - \omega^2 x)}
+\end{align*}
+
+where $\omega = \frac{1}{2}(-1+\sqrt{3}i)$, a primitive cube root of unity.
+
+Then we can write this as:
+\begin{multline*}
+    P(x) = \frac{A_1}{1 - x} + \frac{A_2}{(1 - x)^2} + \frac{A_3}{(1 - x)^3} + \frac{A_4}{(1 - x)^4} \\
+    + \frac{A_5}{1 + x} + \frac{A_6}{(1 + x)^2} \\
+    + \frac{A_7}{1 + ix} + \frac{A_8}{1 - ix} + \frac{A_9}{1 - \omega x} + \frac{A_{10}}{1 - \omega^2 x}
+\end{multline*}
+
+Calculating the $A_i$ values is tedious but straightforward using the Heaviside cover-up
+method. Clearing denominators, we get:
+\begin{align*}
+    1 &= A_1(1-x)^3(1+x)^2(1+x^2)(1+x+x^2) + A_2(1-x)^2(1+x)^2(1+x^2)(1+x+x^2) \\
+    &+ A_3(1-x)(1+x)^2(1+x^2)(1+x+x^2) + A_4(1+x)^2(1+x^2)(1+x+x^2) \\
+    &+ A_5(1-x)^4(1+x)(1+x^2)(1+x+x^2) + A_6(1-x)^4(1+x^2)(1+x+x^2) \\
+    &+ A_7(1-x)^4(1+x)^2(1-ix)(1+x+x^2) + A_8(1-x)^4(1+x)^2(1+ix)(1+x+x^2) \\
+    &+ A_9(1-x)^4(1+x)^2(1+x^2)(1-\omega^2 x) + A_{10}(1-x)^4(1+x)^2(1+x^2)(1 - \omega x)
+\end{align*}
+
+Now we can set $x$ to various values to isolate and calculate the coefficients (since the equation above must hold for all values of $x$).
+
+Setting $x=1, x=-1, x=i, x=-i, x=\omega^2, x=\omega$ in order we get 
+\[
+A_4 = \frac{1}{24}, A_6 = \frac{1}{32}, A_7 = \frac{1}{16}, A_8 = \frac{1}{16}, A_9 = \frac{1-\omega}{27}, A_{10} = \frac{1-\omega^2}{27}
+\]
+
+Then I set $x=2, -2, 0, 3$ respectively to get four simultaneous equations in $A_1, A_2, A_3, A_5$. When all is said and done, I get:
+
+\begin{multline*}P(x) = \frac{17}{72(1-x)} + \frac{59}{288(1-x)^2} + \frac{1}{8(1-x)^3} \\ + \frac{1}{24(1-x)^4} + \frac{1}{8(1+x)} + \frac{1}{32(1+x)^2} + \frac{1}{16(1-ix)} \\ + \frac{1}{16(1+ix)} + \frac{1-\omega}{27(1-\omega x)} + \frac{1-\omega^2}{27(1-\omega^2 x)}\end{multline*}
+
+And if I haven’t made a mistake, after turning each of these simple fractions into its own infinite series as follows:
+
+\begin{align*}
+\frac{1}{1-x} &= 1 + x + x^2 + \cdots \\
+\frac{1}{(1-x)^2} &= 1 + 2x + 3x^2 + 4x^3 + \cdots \\
+\frac{1}{(1-x)^3} &= 1 + \binom{3}{2}x + \binom{4}{2}x^2 + \binom{5}{2}x^3 + \cdots \\
+\frac{1}{(1-x)^4} &= 1 + \binom{4}{3}x + \binom{5}{3}x^2 + \binom{6}{3}x^3 + \cdots \\
+\frac{1}{1+x} &= 1 - x + x^2 - \cdots \\
+\frac{1}{(1+x)^2} &= 1 - 2x + 3x^2 - 4x^3 + \cdots \\
+\frac{1}{1+ix} &= 1 + ix - x^2 - ix^3 + x^4 + \cdots \\
+\frac{1}{1-ix} &= 1 - ix - x^2 + ix^3 + x^4 - \cdots \\
+\frac{1}{1-\omega^2 x} &= 1 + \omega^2 x + \omega x^2 + x^3 + \omega^2 x^4 + \omega x^5 + x^6 + \cdots \\
+\frac{1}{1-\omega x} &= 1 + \omega x + \omega^2 x^2 + x^3 + \omega x^4 + \omega^2 x^5 + x^6 + \cdots
+\end{align*}
+
+And when we plug everything in, we get a coefficient for $a_n$ (reminder, this is the number of
+solutions for partitions in four ordered natural numbers for $x=n+4$) of:
+\begin{multline*}
+a_n = \frac{17}{72} + \frac{59}{288}\binom{n+1}{1} + \frac{1}{8}\binom{n+2}{2} + \frac{1}{24}\binom{n+3}{3} \\
++ \frac{1}{8}(-1)^n + \frac{1}{32}\binom{n+1}{1}(-1)^n + \frac{1}{16}(i^n + (-i)^n) \\
++ \frac{1}{27}\left(\omega^{n} + \omega^{2n} - \omega^{n+1} - \omega^{2n+2}\right)
+\end{multline*}
+
+The $\frac{1}{16}(i^n + (-i)^n)$ terms equal 0 for odd terms, $\frac{1}{8}$ for terms
+where $n$ is divisible by 4, and $-\frac{1}{8}$ for other even terms.
+
+Similarly, the $\frac{1}{27}\left(\omega^{n} + \omega^{2n} - \omega^{n+1} - \omega^{2n+2}\right)$
+terms equal zero, $-\frac{1}{9}$, or $\frac{1}{9}$, depending on whether $n$ has a remainder of
+0, 1, or 2 when divided by 3.
+
+Let’s check our closed form solution for $n=8$ - that is, for $x=12$. By inspection, we can see that the solutions are:
+
+\begin{multline*}
+(a_1,b_1,c_1,d_1) \in \{(2,0,0,0), (1,1,0,1), (1,0,2,0), (1,0,1,2),\\
+(1,0,0,4), (0,2,1,0), (0,2,0,2), (0,1,2,1),(0,1,1,3), (0,1,0,5),\\
+(0,0,4,0), (0,0,3,2), (0,0,2,4), (0,0,1,6), (0,0,0,8)\}
+\end{multline*}
+
+which gives 15 solutions. Again, the solution $(0,1,2,1)$ (for example) corresponds to $a_1 = 0, b_1=1, c_1=2, d_1=1$, which translates to $a'=0, b'=1, c'=3, d'=4$, or $a=1, b=2, c=4, d=5$.
+Using our formula, we get:
+\begin{multline*}
+a_8 = \frac{17}{72} + \frac{59}{288}\binom{9}{1} + \frac{1}{8}\binom{10}{2} + \frac{1}{24}\binom{11}{3} \\ + \frac{1}{8}(-1)^8 + \frac{1}{32}\binom{9}{1}(-1)^8 + \frac{1}{16}(i^8 + (-i)^8) \\ + \frac{1}{27}\left(\omega^{8} + \omega^{16} - \omega^{9} - \omega^{18}\right)
+\end{multline*}
+
+\[a_8 = \frac{17}{72} + \frac{59}{32} + \frac{45}{8} + \frac{55}{8} + \frac{1}{8} + \frac{9}{32} + \frac{1}{8} - \frac{1}{9} = 15 \]
+
+It’s pretty amazing that this complicated fractional expression including binomial coefficients works, but it does!
+
+\section{Recurrence relation}
+
+It is possible to calculate the number of partitions also using a recurrence relation. If we define:
+$P_k(n)$ to be the number of ordered partitions of the number $n$ into exactly $k$ non-zero partitions, we can deduce the following:
+\begin{itemize}
+    \item $P_0(0) = 1$ (by definition - similar to defining $0! = 1$, this ensures the recurrence relationship below terminates in all cases).
+    \item $P_k(n) = 0$ if $k\leq 0, n\leq 0$ and $k,n$ are not both $0$.
+    \item $P_k(n) = P_k(n-k) + P_{k-1}(n-1)$ - that is, we have a choice to increment the size of all partitions by 1 and leave $n-k$ items to distribute across exactly $k$ buckets, or we can fix one bucket, and we have $n-1$ items to distribute across the other $k-1$ buckets.
+\end{itemize}
+
+We can come up with some quick short-cuts for $P_k(n)$ for small values of $k$:
+\begin{itemize}
+    \item $P_1(n) = 1$ for all $n \geq 0$ - that is, with exactly 1 partition, there is only one possible representation.
+    \item $P_n(n) = 1$ is the transposed equivalent - with $n$ buckets and $n$ items, there is only one way to distribute the items so that no bucket is empty.
+    \item $P_k(n) = 0$ if $k > 0, n< k$.
+    \item $P_2(n) = \lfloor \frac{n}{2} \rfloor$
+    \item $P_3(n) = \lfloor \frac{n-1}{2} \rfloor + \lfloor \frac{n-4}{2} \rfloor + \lfloor \frac{n-7}{2} \rfloor  + \cdots $
+\end{itemize}
+
+From this, we can reproduce the result above, albeit a little awkwardly:
+\begin{align*}
+    P_4(12) &= P_4(8) + P_3(11) \\
+    &= P_4(4) + P_3(7) + P_3(8) + P_2(10) \\
+    &= 1 + \lfloor \frac{6}{2} \rfloor + \lfloor \frac{3}{2} \rfloor + \lfloor \frac{7}{2} \rfloor + \lfloor \frac{4}{2} \rfloor + \lfloor \frac{10}{2} \rfloor \\
+    &= 1 + 3 + 1 + 3 + 2 + 5 = 15    
+\end{align*}
+
+as before. I have not found any nice closed form solution to this recurrence relation, however, and the recurrence relation, while easy to calculate by computer, becomes very unwieldy when calculating by hand.
+
+\end{document}
