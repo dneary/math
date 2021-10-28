@@ -76,14 +76,20 @@ Then we can write this as:
 Calculating the $A_i$ values is tedious but straightforward using the Heaviside cover-up
 method. Clearing denominators, we get:
 \begin{align*}
-    1 &= A_1(1-x)^3(1+x)^2(1+x^2)(1+x+x^2) + A_2(1-x)^2(1+x)^2(1+x^2)(1+x+x^2) \\
-    &+ A_3(1-x)(1+x)^2(1+x^2)(1+x+x^2) + A_4(1+x)^2(1+x^2)(1+x+x^2) \\
-    &+ A_5(1-x)^4(1+x)(1+x^2)(1+x+x^2) + A_6(1-x)^4(1+x^2)(1+x+x^2) \\
-    &+ A_7(1-x)^4(1+x)^2(1-ix)(1+x+x^2) + A_8(1-x)^4(1+x)^2(1+ix)(1+x+x^2) \\
-    &+ A_9(1-x)^4(1+x)^2(1+x^2)(1-\omega^2 x) + A_{10}(1-x)^4(1+x)^2(1+x^2)(1 - \omega x)
+	1 &= A_1(1-x)^3(1+x)^2(1+x^2)(1+x+x^2) \\
+	&+ A_2(1-x)^2(1+x)^2(1+x^2)(1+x+x^2) \\
+	&+ A_3(1-x)(1+x)^2(1+x^2)(1+x+x^2) \\
+	&+ A_4(1+x)^2(1+x^2)(1+x+x^2) \\
+    	&+ A_5(1-x)^4(1+x)(1+x^2)(1+x+x^2) \\
+	&+ A_6(1-x)^4(1+x^2)(1+x+x^2) \\
+   	&+ A_7(1-x)^4(1+x)^2(1-ix)(1+x+x^2) \\
+	&+ A_8(1-x)^4(1+x)^2(1+ix)(1+x+x^2) \\
+    	&+ A_9(1-x)^4(1+x)^2(1+x^2)(1-\omega^2 x) \\
+	&+ A_{10}(1-x)^4(1+x)^2(1+x^2)(1 - \omega x)
 \end{align*}
 
-Now we can set $x$ to various values to isolate and calculate the coefficients (since the equation above must hold for all values of $x$).
+Now we can set $x$ to various values to isolate and calculate the coefficients (since the equation
+above must hold for all values of $x$).
 
 Setting $x=1, x=-1, x=i, x=-i, x=\omega^2, x=\omega$ in order we get 
 \[
@@ -92,9 +98,14 @@ A_4 = \frac{1}{24}, A_6 = \frac{1}{32}, A_7 = \frac{1}{16}, A_8 = \frac{1}{16}, 
 
 Then I set $x=2, -2, 0, 3$ respectively to get four simultaneous equations in $A_1, A_2, A_3, A_5$. When all is said and done, I get:
 
-\begin{multline*}P(x) = \frac{17}{72(1-x)} + \frac{59}{288(1-x)^2} + \frac{1}{8(1-x)^3} \\ + \frac{1}{24(1-x)^4} + \frac{1}{8(1+x)} + \frac{1}{32(1+x)^2} + \frac{1}{16(1-ix)} \\ + \frac{1}{16(1+ix)} + \frac{1-\omega}{27(1-\omega x)} + \frac{1-\omega^2}{27(1-\omega^2 x)}\end{multline*}
+\begin{multline*}
+	P(x) = \frac{17}{72(1-x)} + \frac{59}{288(1-x)^2} + \frac{1}{8(1-x)^3} \\
+	+ \frac{1}{24(1-x)^4} + \frac{1}{8(1+x)} + \frac{1}{32(1+x)^2} + \frac{1}{16(1-ix)} \\
+	+ \frac{1}{16(1+ix)} + \frac{1-\omega}{27(1-\omega x)} + \frac{1-\omega^2}{27(1-\omega^2 x)}
+\end{multline*}
 
-And if I haven’t made a mistake, after turning each of these simple fractions into its own infinite series as follows:
+And if I haven’t made a mistake, after turning each of these simple fractions into its own
+infinite series as follows:
 
 \begin{align*}
 \frac{1}{1-x} &= 1 + x + x^2 + \cdots \\
@@ -124,7 +135,8 @@ Similarly, the $\frac{1}{27}\left(\omega^{n} + \omega^{2n} - \omega^{n+1} - \ome
 terms equal zero, $-\frac{1}{9}$, or $\frac{1}{9}$, depending on whether $n$ has a remainder of
 0, 1, or 2 when divided by 3.
 
-Let’s check our closed form solution for $n=8$ - that is, for $x=12$. By inspection, we can see that the solutions are:
+Let’s check our closed form solution for $n=8$ - that is, for $x=12$. By inspection, we can see
+that the solutions are:
 
 \begin{multline*}
 (a_1,b_1,c_1,d_1) \in \{(2,0,0,0), (1,1,0,1), (1,0,2,0), (1,0,1,2),\\
@@ -132,15 +144,42 @@ Let’s check our closed form solution for $n=8$ - that is, for $x=12$. By inspe
 (0,0,4,0), (0,0,3,2), (0,0,2,4), (0,0,1,6), (0,0,0,8)\}
 \end{multline*}
 
-which gives 15 solutions. Again, the solution $(0,1,2,1)$ (for example) corresponds to $a_1 = 0, b_1=1, c_1=2, d_1=1$, which translates to $a'=0, b'=1, c'=3, d'=4$, or $a=1, b=2, c=4, d=5$.
+which gives 15 solutions. Again, the solution $(0,1,2,1)$ (for example) corresponds to
+$a_1 = 0, b_1=1, c_1=2, d_1=1$, which translates to $a'=0, b'=1, c'=3, d'=4$, or $a=1, b=2, c=4, d=5$.
+
 Using our formula, we get:
 \begin{multline*}
-a_8 = \frac{17}{72} + \frac{59}{288}\binom{9}{1} + \frac{1}{8}\binom{10}{2} + \frac{1}{24}\binom{11}{3} \\ + \frac{1}{8}(-1)^8 + \frac{1}{32}\binom{9}{1}(-1)^8 + \frac{1}{16}(i^8 + (-i)^8) \\ + \frac{1}{27}\left(\omega^{8} + \omega^{16} - \omega^{9} - \omega^{18}\right)
+	a_8 = \frac{17}{72} + \frac{59}{288}\binom{9}{1} + \frac{1}{8}\binom{10}{2} + \frac{1}{24}\binom{11}{3} \\
+	+ \frac{1}{8}(-1)^8 + \frac{1}{32}\binom{9}{1}(-1)^8 + \frac{1}{16}(i^8 + (-i)^8) \\
+	+ \frac{1}{27}\left(\omega^{8} + \omega^{16} - \omega^{9} - \omega^{18}\right)
 \end{multline*}
 
 \[a_8 = \frac{17}{72} + \frac{59}{32} + \frac{45}{8} + \frac{55}{8} + \frac{1}{8} + \frac{9}{32} + \frac{1}{8} - \frac{1}{9} = 15 \]
 
-It’s pretty amazing that this complicated fractional expression including binomial coefficients works, but it does!
+It’s pretty amazing that this complicated fractional expression including binomial
+coefficients works, but it does!
+
+We can also expand the binomial coefficients and simplify further to get the formula:
+\begin{multline*}
+	a_n = \frac{1}{288}(2n^3 + 30n^2 + 133n + 175) + (-1)^n(\frac{n+5}{32}) \\
+	+ \frac{1}{16}(i^n + (-i)^n) + \frac{1}{27}\left(\omega^{n} + \omega^{2n} - \omega^{n+1} - \omega^{2n+2}\right)
+\end{multline*}
+and we can notice that:
+\[
+	-\frac{17}{72} \leq
+	\frac{1}{16}(i^n + (-i)^n) + \frac{1}{27}\left(\omega^{n} + \omega^{2n} - \omega^{n+1} - \omega^{2n+2}\right)
+	\leq \frac{17}{72}
+\]
+
+so we can take $a_n$ to be the positive integer closest to $\frac{1}{288}(2n^3 + 30n^2 + 133n + 175) + (-1)^n(\frac{n+5}{32})$
+
+\[
+	a_n = 
+	\begin{cases}
+		\frac{1}{144} (n^3 + 15 n^2 + 62 n + 65) & x \text{ odd} \\
+		\frac{1}{144} (n^3 + 15 n^2 + 71 n + 110) & x \text{ even}
+	\end{cases}
+\]
 
 \section{Recurrence relation}
 
