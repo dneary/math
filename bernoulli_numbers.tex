@@ -1,0 +1,40 @@
+\documentclass{article}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsthm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{problem}{Problem}
+
+\begin{document}
+\title{Bernoulli Numbers}
+\author{Dave Neary}
+
+\maketitle
+
+\section{Introduction}
+
+I first came across the Bernoulli numbers in Faulhaber's formula for summing the $k$th 
+powers of integers. Faulhaber's formula uses exponential generating functions to prove that:
+\[ \sum_{i=1}^n i^k = \frac{1}{k+1} \sum_{j=0}^k \binom{k+1}{j} B_j n^{k+1-j} \]
+
+where $\{B_j\}$ are the Bernoulli numbers. The first few Bernoulli numbers are:
+\[ \{B_i\} = \{1, \frac{1}{2}, \frac{1}{6}, 0, -\frac{1}{30}, 0, \frac{1}{42}, \cdots\} \]
+
+We can use this formula to show, for example, that the sum of the 4th powers of integers:
+\begin{align*}
+	\sum_{i=1}^n i^4 &= \frac{1}{5}\left( \binom{5}{0} B_0 n^{5} +  \binom{5}{1} B_1 n^{4} +  
+	\binom{5}{2} B_2 n^{3} +  \binom{5}{3} B_3 n^{2} +  \binom{5}{4} B_4 n^{1} \right) \\
+			 &= \frac{1}{5}\left( n^{5} +  \frac{5}{2} n^{4} +
+			 \frac{5}{3} n^{3} -  \frac{1}{6} n  \right) \\
+			 &= \frac{1}{5}n^5 + \frac{1}{2}n^4 + \frac{1}{3}n^3 - \frac{1}{30}n
+\end{align*}
+
+But where do these numbers come from, what other applications do they have, and why are they
+important enough to have been given a name?
+
+\section{Bernoulli polynomials}
+
+\end{document}
