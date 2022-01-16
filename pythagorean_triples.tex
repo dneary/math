@@ -1,0 +1,95 @@
+\documentclass{article}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsthm}
+\usepackage{tikz}
+
+\begin{document}
+
+\title{Pythagorean triples}
+\author{Dave Neary}
+
+\maketitle
+
+\section{Finding all Pythagorean triples}
+
+A Pythagorean triple is a set of three positive integers which 
+are the side lengths of a right-angled triangle - that is, by
+Pythagoras's Theorem, the triple $(a,b,c)$ satisfies 
+$a^b + b^2 = c^2$. There are many well-known examples of these,
+including $(3,4,5), (5,12,13), (7,40,41)$ - and so on. Our challenge
+is to find a way by which we can identify all possible Pythagorean
+triples.
+
+To do this, we are going to consider lines with a rational slope, through the
+point $(-1,0)$ as shown in the figure below.
+
+\begin{tikzpicture}[scale=3,cap=round]
+
+\draw (0,0) circle (1cm);
+
+\draw[->] (-1.2,0) -- (1.2,0) node[right] {$x$};
+\draw[->] (0,-1.2) -- (0,1.2) node[above] {$y$};
+\draw[xshift=-1 cm] (0pt,1pt) -- (0pt,-1pt) node[below,fill=white] {$-1$};
+\draw[xshift=1 cm] (0pt,1pt) -- (0pt,-1pt) node[below,fill=white] {$1$};
+\draw[yshift=-1 cm] (1pt,0pt) -- (-1pt,0pt) node[left,fill=white] {$-1$};
+\draw[yshift=1 cm] (1pt,0pt) -- (-1pt,0pt) node[left,fill=white] {$1$};
+
+\draw[thick] (-1.4,-0.1) -- (1.2,0.55);
+\draw[very thick, blue] (30:0cm) -- node[right=1pt,fill=white] {$\frac{m}{n}$} + (0,0.25);
+
+\filldraw[blue] (0.882,0.47) circle[radius=0.5pt]
+node[above=5pt,fill=white] {$(x_1, y_1)$};
+
+\filldraw[blue] (-1,0) circle[radius=0.5pt]
+node[above left=4pt,fill=white] {$(-1, 0)$};
+\end{tikzpicture}
+
+A line with a rational slope $\frac{m}{n}$ through $(-1,0)$ will intersect 
+the $y$-axis at the point $(0,\frac{m}{n})$. It will also intersect the
+unit circle $x^2 + y^2 = 1$ in two points: $(-1,0)$ and $(x_1,y_1)$. Since
+the unit circle is a quadratic curve, and the slope of the line is
+rational, then if one intersection point is a rational point, the second
+intersection must also be rational.
+
+We will find its coordinates in terms of the slope $\frac{m}{n}$. In
+slope-intercept form, the equation of the line is:
+
+\[ y = \frac{m}{n}(x+1) \]
+
+Substituting this expression for $y$ into the equation for the circle, we
+get the intersection points:
+
+\begin{align*}
+x^2 + \left(\frac{m}{n}(x+1)\right)^2 &= 1 \\
+x^2 + \frac{m^2}{n^2} x^2 + \frac{2m^2}{n^2} x + \frac{m^2}{n^2} - 1 &= 0 \\
+\left(\frac{m^2+n^2}{n^2}\right) x^2 + \frac{2m^2}{n^2} x + \frac{m^2-n^2}{n^2} &= 0 \\
+\left(x+1\right)\left(\frac{m^2+n^2}{n^2} x + \frac{m^2-n^2}{n^2}\right) &= 0
+\end{align*}
+
+So we have intersection points when $x = -1$ and $x = \frac{n^2-m^2}{n^2+m^2}$. 
+Substituting this value for $x$ back into the line equation gives:
+\begin{align*}
+y_1 &= \frac{m}{n}\left(\frac{n^2-m^2}{n^2+m^2} + 1 \right) \\
+ &= \frac{m}{n}\left(\frac{2n^2}{n^2+m^2}\right) \\
+ &= \frac{2mn}{n^2+m^2}
+\end{align*}
+
+So for any rational slope $\frac{m}{n}$ we can find a rational point on the
+unit circle $\left(\frac{n^2-m^2}{n^2+m^2}, \frac{2nm}{n^2+m^2}\right)$
+which, in turn, gives us a Pythagorean triple, by setting 
+$(a,b,c)=(n^2-m^2, 2nm, n^2+m^2)$.
+
+Since $a^2 + b^2 = c^2$ is equivalent to 
+$\left(\frac{a}{c}\right)^2 + \left(\frac{b}{c}\right)^2 = 1$, we can always turn a 
+Pythagorean triple into a rational point on the unit circle.
+And since all lines between $(-1,0)$ and a rational point on the unit circle have
+a rational slope, and our construction above works for all rational numbers, every
+Pythagorean triple will be of the form above, or an integer multiple of a point of
+the form above.
+
+
+\end{document}
+
