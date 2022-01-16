@@ -161,7 +161,7 @@ coefficients works, but it does!
 
 We can also expand the binomial coefficients and simplify further to get the formula:
 \begin{multline*}
-	a_n = \frac{1}{288}(2n^3 + 30n^2 + 133n + 175) + (-1)^n(\frac{n+5}{32}) \\
+	a_n = \frac{1}{288}(2n^3 + 30n^2 + 135n + 175) + (-1)^n(\frac{n+5}{32}) \\
 	+ \frac{1}{16}(i^n + (-i)^n) + \frac{1}{27}\left(\omega^{n} + \omega^{2n} - \omega^{n+1} - \omega^{2n+2}\right)
 \end{multline*}
 and we can notice that:
@@ -171,15 +171,17 @@ and we can notice that:
 	\leq \frac{17}{72}
 \]
 
-so we can take $a_n$ to be the positive integer closest to $\frac{1}{288}(2n^3 + 30n^2 + 133n + 175) + (-1)^n(\frac{n+5}{32})$
+so we can take $a_n$ to be the positive integer closest to $\frac{1}{288}(2n^3 + 30n^2 + 135n + 175) + (-1)^n(\frac{n+5}{32})$
 
 \[
 	a_n = 
 	\begin{cases}
-		\frac{1}{144} (n^3 + 15 n^2 + 62 n + 65) & x \text{ odd} \\
-		\frac{1}{144} (n^3 + 15 n^2 + 71 n + 110) & x \text{ even}
+		\left[ \frac{1}{144} (n + 5)(n^2 + 10 n + 13) \right] & x \text{ odd} \\
+		\left[ \frac{1}{144} (n + 5)(n^2 + 10 n + 22) \right] & x \text{ even}
 	\end{cases}
 \]
+
+where $\left[x\right] = \lfloor x+\frac{1}{2} \rfloor$ rounds to the nearest integer.
 
 \section{Recurrence relation}
 

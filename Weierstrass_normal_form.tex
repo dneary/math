@@ -82,7 +82,7 @@ Expanding and cancelling terms, we simplify our original equation to:
 \end{equation*}
 
 Replacing $x=\frac{X}{Z}, y=\frac{Y}{Z}$ to dehomogenize, we get:
-\[  3x^2 + 1 + 4 \alpha y^3 - 12 \alpha y^2 + 12\alpha y - 4\alpha = 0 \]
+\[ 3x^2 + 1 + 4 \alpha y^3 - 12 \alpha y^2 + 12\alpha y - 4\alpha = 0 \]
 \[ 3x^2 = -4\alpha y^3 + 12\alpha y^2 -12 \alpha y +4 \alpha -1 \]
 
 We want a perfect square term on the left, and a leading perfect cube on the right. We can achieve
@@ -95,37 +95,35 @@ Substituting $a=36\alpha x, b=-12\alpha(y-1)$ we get:
 
 The transforms from $(a,b)$ to $(u,v)$ are now straightforward to derive:
 \begin{equation*}
-\begin{split}
-         a & = 36\alpha x \\
-         & = 36 \alpha \frac{X}{Z} \\
-         & = 36 \alpha \frac{U-V}{U+V} \\
-         & = 36 \alpha \frac{u-v}{u+v} \\
-         b & = -12 \alpha (y-1) \\
-         & = -12 \alpha \left(\frac{Y}{Z} - 1 \right) \\
-         & = -12 \alpha \left(\frac{U+V-W}{U+V} - 1 \right) \\
-         & = -12 \alpha \left(\frac{-W}{U+V}\right) \\
-         & = \frac{12 \alpha}{u+v} \\
-\end{split}
+	\begin{array}{llll}
+		a & = & 36\alpha x & \quad \mathrel{\#} \text{Final substitution above} \\
+		& = & 36 \alpha \frac{X}{Z} & \quad \mathrel{\#} x = \frac{X}{Z} \\
+		& = & 36 \alpha \frac{U-V}{U+V}  & \quad \mathrel{\#} X = U - V, Z = U + V \\
+		& = & 36 \alpha \frac{u-v}{u+v} & \quad \mathrel{\#} u = \frac{U}{W}, v = \frac{V}{W} \\
+		b & = & -12 \alpha (y-1) & \quad \mathrel{\#} \text{Final substitution above} \\
+		& = & -12 \alpha \left(\frac{Y}{Z} - 1 \right) & \quad \mathrel{\#} y = \frac{Y}{Z} \\
+		& = & -12 \alpha \left(\frac{U+V-W}{U+V} - 1 \right) & \quad \mathrel{\#} Y = U+V-W, Z= U + V \\
+		& = & -12 \alpha \left(\frac{-W}{U+V}\right) & \quad \mathrel{\#} \text{Simplify } \frac{U+V}{U+V}=1 \\
+		& = & \frac{12 \alpha}{u+v} & \quad \mathrel{\#} u = \frac{U}{W}, v = \frac{V}{W} 
+	\end{array}
 \end{equation*}
-
-where we replace $u=\frac{U}{W}, v=\frac{V}{W}$ to dehomogenize. 
 
 The transformation from $(u,v)$ to $(a,b)$ is similar:
 \begin{equation*}
-\begin{split}
-         u & = \frac{U}{W} \\
-         & = \frac{\frac{1}{2}(X + Z)}{-Y + Z} \\
-         & = \frac{\frac{X}{Z} + 1}{-2\frac{Y}{Z} + 2} \\
-         & = \frac{(x + 1)}{-2(y - 1)} \\
-         & = \frac{(\frac{a}{36\alpha} + 1)}{-2\left(\frac{-b}{12\alpha} \right)} \\
-         & = \frac{a + 36\alpha}{6b} \\
-         v & =  \frac{V}{W} \\
-         & = \frac{\frac{1}{2}(-X + Z)}{-Y + Z} \\
-         & = \frac{-X + Z}{-2Y + 2Z} \\
-         & = \frac{-x + 1}{-2(y -1)} \\
-         & = \frac{-\frac{a}{36\alpha} + 1}{-2(\frac{-b}{12\alpha})} \\
-         & = \frac{-a + 36\alpha}{6b}
-\end{split}
+	\begin{array}{llll}
+		u & = & \frac{U}{W} & \quad \mathrel{\#} \text{Homogenization of original cubic curve} \\
+		& = & \frac{\frac{1}{2}(X + Z)}{-Y + Z} & \quad \mathrel{\#} U = \frac{1}{2}(X + Z), W = -Y + Z \\
+		& = & \frac{\frac{X}{Z} + 1}{-2\frac{Y}{Z} + 2} & \quad \mathrel{\#} \text{Division by Z in numerator and denominator} \\
+		& = & \frac{(x + 1)}{-2(y - 1)} & \quad \mathrel{\#} x = \frac{X}{Z}, y = \frac{Y}{Z} \\
+		& = & \frac{(\frac{a}{36\alpha} + 1)}{-2\left(\frac{-b}{12\alpha} \right)} & \quad \mathrel{\#} a = 36 \alpha x, b = -12 \alpha (y-1) \\
+		& = & \frac{a + 36\alpha}{6b} & \quad \mathrel{\#} \text{Simplify fraction} \\
+		v & = & \frac{V}{W} & \quad \mathrel{\#} \text{Homogenization of original cubic curve} \\
+		& = & \frac{\frac{1}{2}(-X + Z)}{-Y + Z} & \quad \mathrel{\#} V = \frac{1}{2}(-X + Z), W = -Y + Z \\
+		& = & \frac{-X + Z}{-2Y + 2Z} & \quad \mathrel{\#} \text{Simplify fraction} \\
+		& = & \frac{-x + 1}{-2(y -1)} & \quad \mathrel{\#} x = \frac{X}{Z}, y = \frac{Y}{Z} \\
+		& = & \frac{-\frac{a}{36\alpha} + 1}{-2(\frac{-b}{12\alpha})} & \quad \mathrel{\#} a = 36 \alpha x, b = -12 \alpha (y-1) \\
+		& = & \frac{-a + 36\alpha}{6b} & \quad \mathrel{\#} \text{Simplify fraction} 
+	\end{array}
 \end{equation*}
 
 \end{document}
