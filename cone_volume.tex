@@ -130,17 +130,18 @@ factor of length in a cone.
 
 Then:
 \begin{align*}
-\sum_{i=1}^{n} \frac{h}{n}A_n &> V > \sum_{i=0}^{n-1} \frac{h}{n}A_n \\
-\sum_{i=1}^{n} \frac{i^2h}{n^3}A &> V > \sum_{i=0}^{n-1} \frac{i^2h}{n^3}A \\
-\frac{Ah}{n^3} \sum_{i=1}^{n} i^2 &> V > \frac{Ah}{n^3} \sum_{i=0}^{n-1} i^2 \\
-\frac{Ah}{n^3} \frac{(n)(n+1)(2n+1)}{6} &> V > \frac{Ah}{n^3} \frac{(n-1)(n)(2n-1)}{6} \\
-\frac{Ah}{3} (1+\frac{1}{n})(1+\frac{1}{2n}) &> V > \frac{Ah}{3} (1-\frac{1}{n})(1-\frac{1}{2n})
+	\sum_{i=1}^{n} \frac{h}{n}A_n &&&> V > &&\sum_{i=0}^{n-1} \frac{h}{n}A_n \\
+	\sum_{i=1}^{n} \frac{i^2h}{n^3}A &&&> V > &&\sum_{i=0}^{n-1} \frac{i^2h}{n^3}A \\
+	\frac{Ah}{n^3} \sum_{i=1}^{n} i^2 &&&> V > &&\frac{Ah}{n^3} \sum_{i=0}^{n-1} i^2 \\
+	\frac{Ah}{n^3} \frac{(n)(n+1)(2n+1)}{6} &&& > V > &&\frac{Ah}{n^3} \frac{(n-1)(n)(2n-1)}{6} \\
+	\frac{Ah}{3} (1+\frac{1}{n})(1+\frac{1}{2n}) &&&> V > &&\frac{Ah}{3} (1-\frac{1}{n})(1-\frac{1}{2n})
 \end{align*}
 
 For this, we use the formula:
 \[ \sum_{i=1}^{n} i^2 = \frac{(n)(n+1)(2n+1)}{6} \]
 which we can prove by induction, and we simplify the expressions afterwards by dividing each term
-in the numerator by one of the $n$s in the denominator, and finally writing $2-\frac{1}{n} = 2(1-\frac{1}{2n})$ to get our final expression.
+in the numerator by one of the $n$s in the denominator, and finally writing $2-\frac{1}{n} = 2(1-\frac{1}{2n})$ 
+to get our final expression.
 
 It is easy to see that as we take more and more slices, the lower bound and the upper bound both
 get closer and closer to $\frac{Ah}{3}$, one from below, and the other from above. Since we can
