@@ -27,10 +27,9 @@
     
     \textbf{Answer:} Since
     \[ (x-r_1)(x-r_2)(\cdots)(x-r_n) = x^n-(r_1+r_2+\cdots+r_n)x^{n-1} + \cdots \pm r_1r_2\cdots r_n \]
-    we have $r_1 + r_2 + \cdots + r_n = -n$. One possibility for $p(x)$ is $p(x) = (x+1)^{n}$, giving $r_i = -1$ for all $i \in \{1, 2, \cdots, n\}$. Let's see if we can find another set of roots.
-    
-    Using Viète's formulas, we know that
-    \[  \sum_{i=1}^n r_i  = -n \]
+    we have 
+    \[\sum_{i=1}^{n} r_i = -n\]
+    One possibility for $p(x)$ is $p(x) = (x+1)^{n}$, giving $r_i = -1$ for all $i \in \{1, 2, \cdots, n\}$. Assume there is another solution set $(r_1, r_2, \cdots, r_n)$.
 
     By the Cauchy-Schwartz inequality, using the $\mathbb{R}_n$ vectors $(-1, -1, \cdots, -1)$ and $(r_1, r_2, \cdots, r_n)$:
     \[ (-r_1 -r_2 -\cdots -r_n)^2 \leq ((-1)^2 + (-1)^2 + \cdots + (-1)^2)(r_1^2 + r_2^2 + \cdots + r_n^2)\]
@@ -41,11 +40,14 @@
     
     \[\sqrt[16]{\frac{1}{n}\sum_{i=1}^n r_i^{16}} \geq \sqrt{\frac{1}{n}\sum_{i=1}^n r_i^{2}} \]
     Replacing $\sum_{i=1}^n r_i^{16} = n$, we get 
-    \[n \geq \sum_{i=1}^n r_i^{2} \]
+    \begin{align*}
+    1 = \sqrt[16]{\frac{n}{n}} &\geq \sqrt{\frac{1}{n}\sum_{i=1}^n r_i^2} \\
+    1 &\geq \frac{1}{n}\sum_{i=1}^n r_i^2 \\
+    n &\geq \sum_{i=1}^n r_i^{2} \\ \end{align*}
     
     So
     \[ \sum_{i=1}^n r_i^2 = n \]
-    with equality only when $(r_1, r_2, \cdots, r_n) = (-1, -1, \cdots, -1)$.
+    with equality only when $(r_1, r_2, \cdots, r_n) = (-1, -1, \cdots, -1)$, so this is the only solution set.
     
     \item An $n$-inch cube ($n$ a positive integer) is painted on all sides and then cut into 1-inch cubes. If the number of small cubes with one side painted is the same as the number with two sides painted, what values could $n$ have been?
     
