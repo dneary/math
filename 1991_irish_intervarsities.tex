@@ -100,11 +100,16 @@
     
     \textbf{Answer:} Given a sequence of digits $N \in \mathbb{N}$, if $10^k\cdot N \leq 2^n < 10^k(N+1)$ then $2^n$ starts with that sequence of digits.Taking base 10 logs across this equation, we find that we have a solution if:
     \[k + \log_{10} (N) < n \log_{10}(2) < \log_{10}(N+1) + k\]
-    The difference between the left and right hand side is $\log_{10}(1_\frac{1}{N})$, and we can always find a positive integer $M$ such that $\frac{1}{M} < \log_{10}(1_\frac{1}{N})$. 
+    The difference between the left and right hand side is $\log_{10}(1 - \frac{1}{N})$, and we can always
+    find a positive integer $M$ such that $\frac{1}{M} < \log_{10}(1 - \frac{1}{N})$. 
 
-    Since $\log_{10}(2)$ is irrational, we can find $a,b \in \mathbb{Z}$ such that $0 < a\log_{10}(2)-b < \frac{1}{M}$ by Dirichlet's approximation theorem. Then we can find a positive integer $p$ such that 
+    Since $\log_{10}(2)$ is irrational, we can find $a,b \in \mathbb{Z}$ such that $0 < a\log_{10}(2)-b < \frac{1}{M}$
+    by Dirichlet's approximation theorem. Then we can find a positive integer $p$ such that 
+
     \[ (p-1)(a\log_{10}(2) - b) < \log_{10}(N) < p (a\log_{10}(2) - b) < \log_{10}(N+1) \]
+    
     This gives
+
     \[ \log_{10}(N) + bp < ap\log_{10}(2) < \log_{10}(N+1) + bp \]
     
     Taking $n=ap, k=bp$ we see that we have found integers that satisfy the condition required.
