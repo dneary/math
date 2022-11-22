@@ -262,12 +262,15 @@ Next, by dividing $\log_3(\pi)$ by $485\log_3(2) - 306$, we find that:
 \[ \frac{\log_3(\pi)}{485\log_3(2) - 306} \approx 1119.825 \]
 
 This gives:
-\[ \left| 1120(485\log_3(2) - 306) - \log_3(\pi) \right| \approx 0.000161 < \frac{1}{1000} \]
+\[ \left| 1120(485\log_3(2) - 306) - \log_3(\pi) \right| \approx 0.0001619 < \frac{1}{1000} \]
 
-Multiplying through:
-\[ \left| 543200\log_3(2) - 342720 - \log_3(\pi) \right| < \frac{1}{1000} \]
+Multiplying through, and removing absolute value signs since the resulting value is positive
+(if it weren't we could just add one more to the product to make it so):
+\[ 543200\log_3(2) - 342720 - \log_3(\pi) \approx 0.0001619 < \frac{1}{1000} \]
+\[ 543200\log_3(2) - 342720 < \log_3(\pi) + \frac{1}{1000} \]
 
-And finally, according to Wolfram Alpha, we have our answer to the desired precision:
-\[ \left| \frac{2^{543200}}{3^{342720}} - \pi \right| \approx 0.000559 < \frac{1}{100} \]
+And finally, exponentiating everything by 3 and subtracting $\pi$ from both sides, according to Wolfram Alpha,
+we have our answer to the desired precision:
+\[ \left| \frac{2^{543200}}{3^{342720}} - \pi \right| < \pi(3^{\frac{1}{1000}} - 1) \approx 0.00345 < \frac{1}{100} \]
 
 \end{document}
