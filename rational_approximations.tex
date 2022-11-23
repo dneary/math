@@ -228,11 +228,19 @@ $a,b \in \mathbb{Z}$ such that:
 \[ \left| a\log_3(2) - b \right| < \frac{1}{n} \]
 for any $n \in \mathbb{N}$. Taking $x_1 = \log_3(x)$ we can find $N \in \mathbb{Z}$ such
 that:
-\[ 0 <  Na\log_3(2) - Nb - \log_3(x) < \frac{1}{n} \] 
+\begin{align*}
+	0 &<&  Na\log_3(2) &- Nb - \log_3(x) &<& \frac{1}{n} \\
+	\log_3(x) &<&  Na\log_3(2) &- Nb  &<& \log_3(x) + \frac{1}{n}
+\end{align*}
 
-Since $f(x) = 3^x$ is a bijection, we can say that we can find $a,b,N \in \mathbb{Z}$ such that:
-\[ x < \frac{2^{Na}}{3^{Nb}} < x3^{\frac{1}{n}} \]
-for positive real $x$, and an arbitrary natural number $n$.
+Since $f(x) = 3^x$ is a monotonic increasing bijection, we can say that we can take
+the exponential of all values base 3 in this inequality:
+\begin{align*}
+	3^{\log_3(x)} &<&  3^{Na\log_3(2) - Nb} & &<& 3^{\log_3(x) + \frac{1}{n}} \\
+	x &<&  \frac{3^{Na\log_3(2)}}{3^{Nb}}  &&<& 3^{\log_3(x)}3^{\frac{1}{n}} \\
+	x &<&  \frac{2^{Na}}{3^{Nb}}  &&<& x3^{\frac{1}{n}} 
+\end{align*}
+for positive real $x$, an arbitrary natural number $n$, and some integers $a, b, N$.
 
 Finally, given $x, \epsilon > 0 \in \mathbb{R}$, we can find a positive integer $n \in \mathbb{N}$ such that:
 \[ 0 < \frac{2^{Na}}{3^{Nb}} - x  < x(3^{\frac{1}{n}} - 1) < \epsilon  \]
