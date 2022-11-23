@@ -264,26 +264,31 @@ accuracy we will need to approximate $\log_3(\pi)$ to get $0.01$ accuracy at the
 \end{align*}
 
 To make calculations easier, let's take $n = 1000$. We will now find $a,b \in \mathbb{Z}$ such that:
-\[ \left| a\log_3(2) - b \right| < \frac{1}{1000} \]
+\[ 0 < a\log_3(2) - b  < \frac{1}{1000} \]
 With the help of a spreadsheet, I can find that:
 \begin{align*}
-	\left| \{783\log_3(2)\} - \{298\log_3(2)\}\right| &\approx 0.00093 < \frac{1}{1000} \\
-	\left| 783\log_3(2) - \lfloor 783\log_3(2) \rfloor - (298\log_3(2) - \lfloor 298 \log_3(2) \rfloor) \right| &< \frac{1}{1000} \\
-	\left| (783 - 298)\log_3(2) - (\lfloor 783\log_3(2) \rfloor - \lfloor 298 \log_3(2) \rfloor) \right| &< \frac{1}{1000} \\
-	\left| 485\log_3(2) - (494 - 188) \right| &< \frac{1}{1000} \\
-	\left| 485\log_3(2) - 306 \right| &< \frac{1}{1000} 
+	\{783\log_3(2)\} - \{298\log_3(2)\} \approx 0.00093 &< \frac{1}{1000} \\
+	783\log_3(2) - \lfloor 783\log_3(2) \rfloor - (298\log_3(2) - \lfloor 298 \log_3(2) \rfloor)  &< \frac{1}{1000} \\
+	(783 - 298)\log_3(2) - (\lfloor 783\log_3(2) \rfloor - \lfloor 298 \log_3(2) \rfloor)  &< \frac{1}{1000} \\
+	485\log_3(2) - (494 - 188) &< \frac{1}{1000} \\
+	485\log_3(2) - 306 &< \frac{1}{1000} 
 \end{align*}
-In other words, $\left| \log_3(2) - \frac{306}{485} \right| < \frac{1}{485000}$, and $\frac{306}{485}$ is a very good rational
-approximation for $\log_3(2)$.
+In other words, $\log_3(2) - \frac{306}{485} < \frac{1}{485000}$, and 
+$\frac{306}{485}$ is a very good rational approximation for $\log_3(2)$.
 
 Next, by dividing $\log_3(\pi)$ by $485\log_3(2) - 306$, we find that:
 \[ \frac{\log_3(\pi)}{485\log_3(2) - 306} \approx 1119.825 \]
 
 This gives:
-\[ \left| 1120(485\log_3(2) - 306) - \log_3(\pi) \right| \approx 0.0001619 < \frac{1}{1000} \]
+\begin{align*}
+	1119 &<& \frac{\log_3(\pi)}{485\log_3(2) - 306}& &\leq& 1120 \\
+	1119(485\log_3(2) - 306) &<& \log_3(&\pi) &\leq& 1120(485\log_3(2) - 306)
+\end{align*}
 
-Multiplying through, and removing absolute value signs since the resulting value is positive
-(if it weren't we could just add one more to the product to make it so):
+Subtracting $\log_3(\pi)$ from all terms, we get:
+\[ 0 < 1120(485\log_3(2) - 306) - \log_3(\pi) \approx 0.0001619 < \frac{1}{1000} \]
+
+Multiplying out the parenthesis, we end up with:
 \[ 543200\log_3(2) - 342720 - \log_3(\pi) \approx 0.0001619 < \frac{1}{1000} \]
 \[ 543200\log_3(2) - 342720 < \log_3(\pi) + \frac{1}{1000} \]
 
