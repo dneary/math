@@ -228,14 +228,14 @@ $a,b \in \mathbb{Z}$ such that:
 \[ \left| a\log_3(2) - b \right| < \frac{1}{n} \]
 for any $n \in \mathbb{N}$. Taking $x_1 = \log_3(x)$ we can find $N \in \mathbb{Z}$ such
 that:
-\[  Na\log_3(2) - Nb - \log_3(x) < \frac{1}{n} \] 
+\[ 0 <  Na\log_3(2) - Nb - \log_3(x) < \frac{1}{n} \] 
 
 Since $f(x) = 3^x$ is a bijection, we can say that we can find $a,b,N \in \mathbb{Z}$ such that:
-\[ \frac{2^{Na}}{3^{Nb}} < x3^{\frac{1}{n}} \]
+\[ x < \frac{2^{Na}}{3^{Nb}} < x3^{\frac{1}{n}} \]
 for positive real $x$, and an arbitrary natural number $n$.
 
 Finally, given $x, \epsilon > 0 \in \mathbb{R}$, we can find a positive integer $n \in \mathbb{N}$ such that:
-\[ \frac{2^{Na}}{3^{Nb}} - x  < x(3^{\frac{1}{n}} - 1) < \epsilon  \]
+\[ 0 < \frac{2^{Na}}{3^{Nb}} - x  < x(3^{\frac{1}{n}} - 1) < \epsilon  \]
 since $\lim_{n \to \infty} (3^{\frac{1}{n}} - 1) = 0$.
 
 Working through an example to find $a,b \in \mathbb{Z}$ will make this mechanism clear. Let's say that we want
