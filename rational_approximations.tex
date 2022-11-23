@@ -214,24 +214,31 @@ constraint is $169$, and there are no other solutions.
 
 \section{Approximating any positive real number with $\frac{2^a}{3^b}, a,b \in \mathbb{Z}^+$}
 
-Given $\epsilon>0, x \in \mathbb{R}^+$, we can find $a,b \in \mathbb{Z}^+$ such that:
+\textbf{Theorem:} Given $\epsilon>0, x \in \mathbb{R}^+$, we can find $a,b \in \mathbb{Z}^+$ such that:
 \[ \left|x - \frac{2^a}{3^b} \right| < \epsilon \]
 
-Consider:
+\textbf{Proof:} Consider for any $a,b \in \mathbb{Z}$ that the following 
+equations are equivalent:
 \begin{align*}
 	y &= \frac{2^a}{3^b} \\
 	\log_3(y) &= a\log_3(2) - b
 \end{align*}
+We will use this second form to determine integers that satisfy our desired inequality.
 
 Since $\log_3(2)$ is irrational, we can use Dirichelet's approximation theorem to find
 $a,b \in \mathbb{Z}$ such that:
-\[ \left| a\log_3(2) - b \right| < \frac{1}{n} \]
-for any $n \in \mathbb{N}$. Taking $x_1 = \log_3(x)$ we can find $N \in \mathbb{Z}$ such
-that:
+\[ 0 < a\log_3(2) - b < \frac{1}{n} \]
+for any $n \in \mathbb{N}$.
+
+Now given a positive real number $x$, we can find an
+integer $N$ such that:
 \begin{align*}
-	0 &<&  Na\log_3(2) &- Nb - \log_3(x) &<& \frac{1}{n} \\
-	\log_3(x) &<&  Na\log_3(2) &- Nb  &<& \log_3(x) + \frac{1}{n}
+	N-1 &<& \frac{\log_3(x)}{a\log_3(2) - b} &\leq& N \\
+	(N-1)(a\log_3(2) - b) &<& \log_3(x) &\leq& N(a\log_3(2) - b) \\
+	\log_3(x) &\leq& N(a\log_3(2) - b) &<& \log_3(x) + \frac{1}{n} \\
+	\log_3(x) &\leq& Na\log_3(2) - Nb &<& \log_3(x) + \frac{1}{n} 
 \end{align*}
+
 
 Since $f(x) = 3^x$ is a monotonic increasing bijection, we can say that we can take
 the exponential of all values base 3 in this inequality:
