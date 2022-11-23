@@ -10,6 +10,7 @@
 \begin{document}
 
 \title{Rational approximations of real numbers}
+\author{Dave Neary}
 
 \maketitle
 
@@ -86,7 +87,7 @@ least 2 will land in the same bucket, by the Pigeonhole principle. If these two 
 then $a_i = \{ix\} = ix - \lfloor ix \rfloor, a_j = \{jx\} = jx - \lfloor jx \rfloor$, and
 
 \[ \frac{1}{n} > |\{ix\}-\{jx\}| = | (ix-\lfloor ix \rfloor) - (jx - \lfloor jx \rfloor) | \]
-\[ \frac{1}{n} > | (i-j)x + (\lfloor jx \rfloor - \lfloor ix \rfloor ) | = | ax+b | \]
+\[ \frac{1}{n} > | (i-j)x - (\lfloor ix \rfloor - \lfloor jx \rfloor ) | = | ax-b | \]
 
 for an integer $b = |\lfloor ix \rfloor - \lfloor jx \rfloor|$. What's more, regardless of how close
 the estimate is for $n$, we can find a better estimate by choosing $n > |\frac{1}{ax-b}|$, when
