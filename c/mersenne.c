@@ -1,3 +1,11 @@
+
+/* Copyright Fabrice Bellard 2000
+ * Source: https://bellard.org/mersenne.html
+ * 
+ * Dave Neary (Dec 2022) eliminated all the warnings and indented
+ * code to be more readable. Still no clue how it works though.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 
