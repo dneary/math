@@ -24,7 +24,7 @@ double my_sqrt(double x)
 	/* Use Newton-Raphson, because why not? */
 	/* x_{n+1} = x_n - (x_n^2-x)/2x_n */
 	/* x_0 = x (the radius of convergence is infinite on (0,infty), I think) */
-	/* Aiming for a precision of 10**-6 */
+	/* Aiming for a precision of 10**-12 */
 
 	int n;
 	double y0, y1, precision=1E-12;
