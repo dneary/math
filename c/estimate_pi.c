@@ -53,11 +53,10 @@ int main(void)
 		a = rand(), b = rand();
 		if(euclidean(a,b) == 1)
 		{
-			/* a,b are not coprime - increment our counter */
+			/* a,b are coprime - increment our counter */
 			n++;
 		}
 
-		/* printf("a=%12d\tb=%12d\t gcd(a,b) = %d \n", a, b, euclidean(a,b)); */
 #if DEBUG
 		if((i+1)%(1<<20) == 0)
 		{
