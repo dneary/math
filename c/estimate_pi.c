@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <limits.h>
+#include <math.h>
 
 #define DEBUG 1
 
@@ -27,7 +28,7 @@ double my_sqrt(double x)
 	/* Aiming for a precision of 10**-12 */
 
 	int n;
-	double y0, y1, precision=1E-12;
+	double y0, y1, precision=1E-10;
 
 	y0 = 0;
 	y1 =x;
@@ -35,7 +36,7 @@ double my_sqrt(double x)
 	do {
 		y0 = y1;
 		y1 = y0 - (y0*y0 - x)/(2*y0);
-	} while(abs(y1-y0) > precision);
+	} while(fabs(y1-y0) > precision);
 
 	return(y1);
 }
@@ -46,6 +47,7 @@ int main(void)
 	unsigned int a,b;
 	time_t t;
 	int n = 0, iter = INT_MAX;
+	double ratio;
 
 	srand((unsigned) time(&t));
 	for (i = 0; i < iter; i++)
@@ -60,14 +62,17 @@ int main(void)
 #if DEBUG
 		if((i+1)%(1<<20) == 0)
 		{
+			ratio = n/(double)(i+1);
 			printf("MARK: %12d:\n", i+1, n);
-			printf("6/pi^2 ~= %lf\t pi^2 ~= %lf\t pi ~= %lf\n\n", n/((double)(i+1)), 6*((i+1)/(double)n), my_sqrt(6*((i+1)/(double)n)));
+			printf("6/pi^2 ~= %lf\t pi^2 ~= %lf\t pi ~= %lf\n\n", ratio, 6.0/ratio, my_sqrt(6.0/ratio));
 		}
 #endif
 	}
+	ratio = n/(double)iter;
+
 	printf("Total iterations: %12d\t Coprime pairs: %12d \n", iter, n);
-	printf("Estimate of 6/pi^2: %lf\n", n/((double)iter));
-	printf("Estimate of pi^2: %lf\n", 6*(iter/((double)n)));
-	printf("Estimate of pi: %lf\n", my_sqrt(6*(iter/((double)n))));
+	printf("Estimate of 6/pi^2: %lf\n", ratio);
+	printf("Estimate of pi^2: %lf\n", 6/ratio);
+	printf("Estimate of pi: %lf\n", my_sqrt(6/ratio));
 	return EXIT_SUCCESS;
 }
