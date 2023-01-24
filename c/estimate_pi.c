@@ -27,7 +27,6 @@ double my_sqrt(double x)
 	/* x_0 = x (the radius of convergence is infinite on (0,infty), I think) */
 	/* Aiming for a precision of 10**-12 */
 
-	int n;
 	double y0, y1, precision=1E-10;
 
 	y0 = 0;
@@ -63,8 +62,8 @@ int main(void)
 		if((i+1)%(1<<20) == 0)
 		{
 			ratio = n/(double)(i+1);
-			printf("MARK: %12d:\n", i+1, n);
-			printf("6/pi^2 ~= %lf\t pi^2 ~= %lf\t pi ~= %lf\n\n", ratio, 6.0/ratio, my_sqrt(6.0/ratio));
+			printf("MARK: %12d: %12d\n", i+1, n);
+			printf("6/pi^2 ~= %lf\t pi^2 ~= %lf\t pi ~= %lf\n\n", ratio, 6.0/ratio, sqrt(6.0/ratio));
 		}
 #endif
 	}
@@ -73,6 +72,6 @@ int main(void)
 	printf("Total iterations: %12d\t Coprime pairs: %12d \n", iter, n);
 	printf("Estimate of 6/pi^2: %lf\n", ratio);
 	printf("Estimate of pi^2: %lf\n", 6/ratio);
-	printf("Estimate of pi: %lf\n", my_sqrt(6/ratio));
+	printf("Estimate of pi: %lf\n", sqrt(6/ratio));
 	return EXIT_SUCCESS;
 }
