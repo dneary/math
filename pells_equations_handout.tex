@@ -114,11 +114,18 @@ Repeating this process until repetition, we find that:
 \[ \sqrt{19} = [4;2,1,3,1,2,8,\cdots] \]
 
 By investigating the convergents of the continued fraction, we find that they are:
-\[ 4,\frac{9}{2},\frac{13}{3}, \frac{48}{11}, \cdots \]
+\[ \frac{4}{1},\frac{9}{2},\frac{13}{3}, \frac{48}{11}, \frac{61}{14}, \frac{170}{39}, \frac{1421}{326}, \cdots \]
 
 By finding repeatedly accurate convergents $\frac{a}{b}$, and calculating $a^2-19b^2$ for each, 
-we eventually find our base solution for $m=19$, which is:
-\[ 170^2 - 19(39^2)  = 1 \]
+we eventually find our base solution for $m=19$:
+\begin{align*}
+	4^2 - 19(1^2) &= -3 \\
+	9^2 - 19(2^2) &= 5 \\
+	13^2 - 19(3^2) &= -2 \\
+	48^2 - 19(11^2) &= 5 \\
+	61^2 - 19(14^2) &= -3 \\
+	170^2 - 19(39^2) &= 1
+\end{align*}
 
 As a challenge, can you calculate the continued fraction for $\sqrt{13}$ and $\sqrt{41}$ and
 find the base solution to the equation $a^2-13b^2 = \pm 1$ and $a^2 - 41b^2 = \pm1$?
