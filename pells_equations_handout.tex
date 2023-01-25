@@ -65,11 +65,25 @@ for positive integers $m$. Lagrange proved that if $m$ is not a perfect square, 
 for some values of $m$, it is easy to identify a solution - for example, for $m=3$, $(2,1)$ is a solution to:
 \[a^2-3b^2=1 \]
 
-then, by factoring this expression as a difference of squares $\sum_{i=2}^n \lfloor \sqrt[i]{n} \rfloor = \sum_{i=2}^n \lfloor \log_i (n) \rfloor$
+then, by factoring this expression as a difference of squares:
 \[(a-\sqrt{3}b)(a+\sqrt{3}b) = 1 \]
 we get two expressions in the extension of integers $\mathbb{Z}[\sqrt{3}]$ which we can then raise to any power $n$ using the binomial theorem. $(a+\sqrt{3}b)^n = A + \sqrt{3}B$, and $(a-\sqrt{3}b)^n = A-\sqrt{3}B$ which generates an infinity of solutions.
 
 For example, $(a+\sqrt{3}b)^2 = (a^2+3b^2) + (2ab)\sqrt{3}, (a-\sqrt{3}b)^2 = (a^2+3b^2)-(2ab)\sqrt{3}$ so from the base solution $(2,1)$, we can generate another solution $(2^2+3\cdot1^2,2\cdot2\cdot1) = (7,4)$ and we can check that $7^2-3\cdot4^2=1$ - and we can do the same thing for any integer power of $2+\sqrt{3}$! That's kind of neat.
+
+If we take $a^2 - 2b^2 = -1$ the base solution will be $a=1, b=1$. We can factor this to get:
+\[ (1-\sqrt{2})(1+\sqrt{2}) = -1 \]
+
+and again, we can raise this to any power:
+\[ (1-\sqrt{2})^n(1+\sqrt{2})^n = (-1)^n \]
+
+and for even powers of $n$ we get solutions to $a^2-2b^2=1$! For example:
+\[ (1-\sqrt{2})^2 = 3-2\sqrt{2} \]
+and
+\[ 3^2 - 2(2^2) = 1 \]
+
+If there is a solution to the negative Pell's equation, it will always happen for a
+number smaller than the base solution for the positive Pell's equation with the same value $d$.
 
 \section{General method for finding base solution}
 
